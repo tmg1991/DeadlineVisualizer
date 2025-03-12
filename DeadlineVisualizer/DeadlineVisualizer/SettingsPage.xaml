@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="DeadlineVisualizer.SettingsPage"
+             xmlns:res="clr-namespace:DeadlineVisualizer.Resources"
+             Title="{x:Static res:AppRes.SettingsPageTitle }">
+    <VerticalStackLayout>
+        <HorizontalStackLayout Margin="15">
+            
+        </HorizontalStackLayout>
+        <Grid Margin="15" RowSpacing="20">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Label Grid.Row="0" Grid.Column="0" Text="{x:Static res:AppRes.SettingsErrorMessage}" TextColor="Orange" IsVisible="{Binding ShouldShowError}" HorizontalOptions="Start"/>
+            <Label Grid.Row="0" Grid.Column="0" Text="{x:Static res:AppRes.SettingsSaveSuccessful}" TextColor="Green" IsVisible="{Binding ShouldShowSaveSuccess}" HorizontalOptions="Start"/>
+            <Button Grid.Row="0" Grid.Column="1" Text="{x:Static res:AppRes.SettingsSaveButtonText}" Command="{Binding SaveCommand}" HorizontalOptions="End"/>
+            
+            <Label Grid.Row="1" Grid.Column="0" Text="{x:Static res:AppRes.WarningLevel1DistanceText }" VerticalOptions="Center" HorizontalOptions="Start"/>
+            <Entry Grid.Row="1" Grid.Column="1" Text="{Binding WarningLevel1Distance}" HorizontalOptions="End"/>
+            <Label Grid.Row="2" Grid.Column="0" Text="{x:Static res:AppRes.WarningLevel2DistanceText }" VerticalOptions="Center" HorizontalOptions="Start"/>
+            <Entry Grid.Row="2" Grid.Column="1" Text="{Binding WarningLevel2Distance}" HorizontalOptions="End"/>
+            <Label Grid.Row="3" Grid.Column="0" Text="{x:Static res:AppRes.WarningLevel3DistanceText }" VerticalOptions="Center" HorizontalOptions="Start"/>
+            <Entry Grid.Row="3" Grid.Column="1" Text="{Binding WarningLevel3Distance}" HorizontalOptions="End"/>
+            
+            <Label Grid.Row="4" Grid.Column="0" Text="{x:Static res:AppRes.DefaultCalendarUnit }" VerticalOptions="Center" HorizontalOptions="Start"/>
+            <Picker Grid.Row="4" Grid.Column="1" ItemsSource="{Binding CalendarUnitDescriptions}" SelectedItem="{Binding SelectedCalendarUnitDescription}" ItemDisplayBinding="{Binding Name}" HorizontalOptions="End" WidthRequest="200"/>
+        </Grid>
+    </VerticalStackLayout>
+</ContentPage>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Shell
+    x:Class="DeadlineVisualizer.AppShell"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:DeadlineVisualizer"
+    xmlns:res="clr-namespace:DeadlineVisualizer.Resources"
+    Shell.FlyoutBehavior="Flyout"
+    Title="Deadline Visualizer"
+    FlyoutBackgroundColor="LightGray">
+
+    <FlyoutItem Title="{x:Static res:AppRes.MainPageTitle}">
+        <Tab>
+            <ShellContent ContentTemplate="{DataTemplate local:MainPage}" />
+        </Tab>
+    </FlyoutItem>
+    <FlyoutItem Title="{x:Static res:AppRes.SettingsPageTitle}">
+        <Tab>
+            <ShellContent ContentTemplate="{DataTemplate local:SettingsPage}" />
+        </Tab>
+    </FlyoutItem>
+
+    <!--<ShellContent
+        Title="Home"
+        ContentTemplate="{DataTemplate local:MainPage}"
+        Route="MainPage" />-->
+
+</Shell>
