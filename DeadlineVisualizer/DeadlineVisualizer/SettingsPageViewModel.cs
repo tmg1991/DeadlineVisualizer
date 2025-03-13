@@ -1,10 +1,8 @@
-﻿using System.ComponentModel;
-using System.Runtime.CompilerServices;
-using System.Windows.Input;
+﻿using System.Windows.Input;
 
 namespace DeadlineVisualizer
 {
-    public class SettingsPageViewModel : INotifyPropertyChanged
+    public class SettingsPageViewModel : NotifyBase
     {
         private int _warningLevel1Distance;
         public int WarningLevel1Distance
@@ -126,11 +124,5 @@ namespace DeadlineVisualizer
         private bool AreDistancesValid() => _warningLevel3Distance > 0 &&
             _warningLevel2Distance > _warningLevel3Distance &&
             _warningLevel1Distance > _warningLevel2Distance;
-
-        public event PropertyChangedEventHandler? PropertyChanged;
-        private void NotifyPropertyChanged([CallerMemberName] string propertyName = "")
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
     }
 }

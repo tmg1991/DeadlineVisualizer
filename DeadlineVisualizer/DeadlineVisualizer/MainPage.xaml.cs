@@ -2,24 +2,29 @@
 {
     public partial class MainPage : ContentPage
     {
-        int count = 0;
-
-        public MainPage()
+        private readonly MainPageViewModel _viewModel;
+        private readonly MilestoneBuffer _milestoneBuffer;
+        public MainPage(MainPageViewModel viewModel, MilestoneBuffer milestoneBuffer)
         {
+            _viewModel = viewModel;
+            _milestoneBuffer = milestoneBuffer;
+            BindingContext = _viewModel;
+            _viewModel.MilestoneChangeRequested += _viewModel_MilestoneChangeRequested;
             InitializeComponent();
+            
         }
 
-        private void OnCounterClicked(object sender, EventArgs e)
+        private async void _viewModel_MilestoneChangeRequested(object? sender, Milestone e)
         {
-            count++;
-
-            if (count == 1)
-                CounterBtn.Text = $"Clicked {count} time";
-            else
-                CounterBtn.Text = $"Clicked {count} times";
-
-            SemanticScreenReader.Announce(CounterBtn.Text);
+            await Navigation.PushAsync(new DetailsPage(e, _milestoneBuffer), true);
         }
+
+        protected override void OnNavigatedTo(NavigatedToEventArgs args)
+        {
+            _viewModel.OnNavigatedTo();
+            base.OnNavigatedTo(args);
+        }
+
     }
 
 }

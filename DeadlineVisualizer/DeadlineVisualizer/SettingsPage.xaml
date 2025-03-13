@@ -5,9 +5,6 @@
              xmlns:res="clr-namespace:DeadlineVisualizer.Resources"
              Title="{x:Static res:AppRes.SettingsPageTitle }">
     <VerticalStackLayout>
-        <HorizontalStackLayout Margin="15">
-            
-        </HorizontalStackLayout>
         <Grid Margin="15" RowSpacing="20">
             <Grid.RowDefinitions>
                 <RowDefinition Height="1*"/>

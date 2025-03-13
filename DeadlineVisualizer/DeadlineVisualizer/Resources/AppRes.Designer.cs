@@ -61,6 +61,15 @@ namespace DeadlineVisualizer.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Add deadline.
+        /// </summary>
+        internal static string AddDeadline {
+            get {
+                return ResourceManager.GetString("AddDeadline", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Calendar weeks.
         /// </summary>
         internal static string CalendarWeeksString {
@@ -79,6 +88,15 @@ namespace DeadlineVisualizer.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Deadline should not be a past date.
+        /// </summary>
+        internal static string DeadlineShouldNotBeInThePast {
+            get {
+                return ResourceManager.GetString("DeadlineShouldNotBeInThePast", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Default calendar unit.
         /// </summary>
         internal static string DefaultCalendarUnit {
@@ -88,11 +106,83 @@ namespace DeadlineVisualizer.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Details.
+        /// </summary>
+        internal static string DetailsPageTitle {
+            get {
+                return ResourceManager.GetString("DetailsPageTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Visualizer.
         /// </summary>
         internal static string MainPageTitle {
             get {
                 return ResourceManager.GetString("MainPageTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Color.
+        /// </summary>
+        internal static string MilestoneColor {
+            get {
+                return ResourceManager.GetString("MilestoneColor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Deadline.
+        /// </summary>
+        internal static string MilestoneDeadline {
+            get {
+                return ResourceManager.GetString("MilestoneDeadline", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Remarks.
+        /// </summary>
+        internal static string MilestoneNotes {
+            get {
+                return ResourceManager.GetString("MilestoneNotes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Title.
+        /// </summary>
+        internal static string MIlestoneTitle {
+            get {
+                return ResourceManager.GetString("MIlestoneTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to New.
+        /// </summary>
+        internal static string NewFileButtonText {
+            get {
+                return ResourceManager.GetString("NewFileButtonText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Open....
+        /// </summary>
+        internal static string OpenFileButtonText {
+            get {
+                return ResourceManager.GetString("OpenFileButtonText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Save.
+        /// </summary>
+        internal static string SaveFileButtonText {
+            get {
+                return ResourceManager.GetString("SaveFileButtonText", resourceCulture);
             }
         }
         
@@ -129,6 +219,15 @@ namespace DeadlineVisualizer.Resources {
         internal static string SettingsSaveSuccessful {
             get {
                 return ResourceManager.GetString("SettingsSaveSuccessful", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Title should not be empty.
+        /// </summary>
+        internal static string TitleShouldNotBeEmpty {
+            get {
+                return ResourceManager.GetString("TitleShouldNotBeEmpty", resourceCulture);
             }
         }
         

@@ -20,6 +20,9 @@ namespace DeadlineVisualizer
 #endif
             builder.Services.AddTransient<SettingsPage>();
             builder.Services.AddTransient<SettingsPageViewModel>();
+            builder.Services.AddSingleton<MainPage>();
+            builder.Services.AddSingleton<MainPageViewModel>();
+            builder.Services.AddSingleton<MilestoneBuffer>();
             return builder.Build();
         }
     }

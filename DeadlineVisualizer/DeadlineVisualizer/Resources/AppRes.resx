@@ -117,17 +117,47 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="AddDeadline" xml:space="preserve">
+    <value>Add deadline</value>
+  </data>
   <data name="CalendarWeeksString" xml:space="preserve">
     <value>Calendar weeks</value>
   </data>
   <data name="DaysString" xml:space="preserve">
     <value>Days</value>
   </data>
+  <data name="DeadlineShouldNotBeInThePast" xml:space="preserve">
+    <value>Deadline should not be a past date</value>
+  </data>
   <data name="DefaultCalendarUnit" xml:space="preserve">
     <value>Default calendar unit</value>
   </data>
+  <data name="DetailsPageTitle" xml:space="preserve">
+    <value>Details</value>
+  </data>
   <data name="MainPageTitle" xml:space="preserve">
     <value>Visualizer</value>
+  </data>
+  <data name="MilestoneColor" xml:space="preserve">
+    <value>Color</value>
+  </data>
+  <data name="MilestoneDeadline" xml:space="preserve">
+    <value>Deadline</value>
+  </data>
+  <data name="MilestoneNotes" xml:space="preserve">
+    <value>Remarks</value>
+  </data>
+  <data name="MIlestoneTitle" xml:space="preserve">
+    <value>Title</value>
+  </data>
+  <data name="NewFileButtonText" xml:space="preserve">
+    <value>New</value>
+  </data>
+  <data name="OpenFileButtonText" xml:space="preserve">
+    <value>Open...</value>
+  </data>
+  <data name="SaveFileButtonText" xml:space="preserve">
+    <value>Save</value>
   </data>
   <data name="SettingsErrorMessage" xml:space="preserve">
     <value>Warning levels should be descending</value>
@@ -140,6 +170,9 @@
   </data>
   <data name="SettingsSaveSuccessful" xml:space="preserve">
     <value>Saved</value>
+  </data>
+  <data name="TitleShouldNotBeEmpty" xml:space="preserve">
+    <value>Title should not be empty</value>
   </data>
   <data name="WarningLevel1DistanceText" xml:space="preserve">
     <value>Warning Level 1 (days)</value>
