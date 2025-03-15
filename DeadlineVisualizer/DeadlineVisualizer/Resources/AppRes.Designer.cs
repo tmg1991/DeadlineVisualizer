@@ -79,6 +79,15 @@ namespace DeadlineVisualizer.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Current file:.
+        /// </summary>
+        internal static string CurrentFile {
+            get {
+                return ResourceManager.GetString("CurrentFile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Days.
         /// </summary>
         internal static string DaysString {
@@ -192,6 +201,15 @@ namespace DeadlineVisualizer.Resources {
         internal static string SaveError {
             get {
                 return ResourceManager.GetString("SaveError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Save as....
+        /// </summary>
+        internal static string SaveFileAsButtonText {
+            get {
+                return ResourceManager.GetString("SaveFileAsButtonText", resourceCulture);
             }
         }
         

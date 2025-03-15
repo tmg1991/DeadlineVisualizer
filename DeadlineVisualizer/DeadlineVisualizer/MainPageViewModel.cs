@@ -22,6 +22,25 @@ namespace DeadlineVisualizer
             set { _milestones = value; NotifyPropertyChanged(); }
         }
 
+        private string _currentFileName;
+        public string CurrentFileName
+        {
+            get { return _currentFileName; }
+            private set { _currentFileName = value; NotifyPropertyChanged(); }
+        }
+
+        private string _currentFileFullPath;
+        public string CurrentFileFullPath
+        {
+            get { return _currentFileFullPath; }
+            set 
+            {
+                _currentFileFullPath = value;
+                CurrentFileName = Path.GetFileName(value);
+                NotifyPropertyChanged();
+            }
+        }
+
         public ICommand NewFileCommand { get; private set; }
         public ICommand OpenFileCommand { get; private set; }
         public ICommand SaveFileCommand { get; private set; }
@@ -58,6 +77,16 @@ namespace DeadlineVisualizer
             var jsonString = await File.ReadAllTextAsync(filepath);
             using var stream = new MemoryStream(Encoding.Default.GetBytes(jsonString));
             var data = await JsonSerializer.DeserializeAsync<ObservableCollection<Milestone>>(stream);
+            if (data != null)
+            {
+                Milestones = data;
+            }
+        }
+
+        public void Clear()
+        {
+            Milestones.Clear();
+            CurrentFileFullPath = string.Empty;
         }
 
         private void UpdateCollection(Milestone milestone)

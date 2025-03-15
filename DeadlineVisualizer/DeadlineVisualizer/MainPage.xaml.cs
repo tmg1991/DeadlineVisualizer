@@ -27,13 +27,37 @@ namespace DeadlineVisualizer
             base.OnNavigatedTo(args);
         }
 
-        private async void SaveButton_Clicked(object sender, EventArgs e)
+        private async void SaveButton_Clicked(object sender, EventArgs e) 
+        {
+            if (string.IsNullOrEmpty(_viewModel.CurrentFileFullPath))
+            {
+                SaveAsButton_Clicked(sender, e);
+            }
+            else
+            {
+                try
+                {
+                    using (var jsonStream = _viewModel.GetSerializedMilestones())
+                    using (var fileStream = new FileStream(_viewModel.CurrentFileFullPath, FileMode.Create, FileAccess.Write))
+                    {
+                        await jsonStream.CopyToAsync(fileStream);
+                    };
+                }
+                catch (Exception ex)
+                {
+                    await DisplayAlert(DeadlineVisualizer.Resources.AppRes.SaveError, ex.Message, "OK");
+                }
+            }
+        }
+
+        private async void SaveAsButton_Clicked(object sender, EventArgs e)
         {
             var jsonStream = _viewModel.GetSerializedMilestones();
             var fileSaverResult = await FileSaver.Default.SaveAsync("new_deadlines.json", jsonStream, CancellationToken.None);
             try
             {
                 fileSaverResult.EnsureSuccess();
+                _viewModel.CurrentFileFullPath = fileSaverResult.FilePath;
             }
             catch (Exception ex)
             {
@@ -53,12 +77,18 @@ namespace DeadlineVisualizer
                 try
                 {
                     await _viewModel.LoadFromFileAsync(dialogResult.FullPath);
+                    _viewModel.CurrentFileFullPath = dialogResult.FullPath;
                 }
                 catch (Exception ex)
                 {
                     await DisplayAlert(DeadlineVisualizer.Resources.AppRes.LoadError, ex.Message, "OK");
                 }
             }
+        }
+
+        private void NewButton_Clicked(object sender, EventArgs e)
+        {
+            _viewModel.Clear();
         }
     }
 

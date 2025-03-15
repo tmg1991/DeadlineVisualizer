@@ -8,10 +8,20 @@
             <ColumnDefinition Width="1*"/>
             <ColumnDefinition Width="10*"/>
         </Grid.ColumnDefinitions>
-        <VerticalStackLayout Spacing="15">
-            <Button Text="{x:Static res:AppRes.NewFileButtonText}" Command="{Binding NewFileCommand}"/>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="10*"/>
+        </Grid.RowDefinitions>
+        <HorizontalStackLayout Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Spacing="15">
+            <Label Text="{x:Static res:AppRes.CurrentFile}" HorizontalOptions="Start" FontAttributes="Bold"/>
+            <Label Text="{Binding CurrentFileName}" HorizontalOptions="Start" FontAttributes="Italic"/>
+        </HorizontalStackLayout>
+        
+        <VerticalStackLayout Spacing="15" Grid.Row="1" Grid.Column="0">
+            <Button Text="{x:Static res:AppRes.NewFileButtonText}" Clicked="NewButton_Clicked"/>
             <Button Text="{x:Static res:AppRes.OpenFileButtonText}" Clicked="OpenButton_Clicked"/>
             <Button Text="{x:Static res:AppRes.SaveFileButtonText}" Clicked="SaveButton_Clicked"/>
+            <Button Text="{x:Static res:AppRes.SaveFileAsButtonText}" Clicked="SaveAsButton_Clicked"/>
             <Button Text="+" Command="{Binding AddMilestoneCommand}" WidthRequest="50" HeightRequest="50" Margin="30" CornerRadius="200"/>
         </VerticalStackLayout>
     </Grid>

@@ -123,6 +123,9 @@
   <data name="CalendarWeeksString" xml:space="preserve">
     <value>Calendar weeks</value>
   </data>
+  <data name="CurrentFile" xml:space="preserve">
+    <value>Current file:</value>
+  </data>
   <data name="DaysString" xml:space="preserve">
     <value>Days</value>
   </data>
@@ -161,6 +164,9 @@
   </data>
   <data name="SaveError" xml:space="preserve">
     <value>Couldn't save file</value>
+  </data>
+  <data name="SaveFileAsButtonText" xml:space="preserve">
+    <value>Save as...</value>
   </data>
   <data name="SaveFileButtonText" xml:space="preserve">
     <value>Save</value>
