@@ -115,6 +115,15 @@ namespace DeadlineVisualizer.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Couldn&apos;t load file.
+        /// </summary>
+        internal static string LoadError {
+            get {
+                return ResourceManager.GetString("LoadError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Visualizer.
         /// </summary>
         internal static string MainPageTitle {
@@ -174,6 +183,15 @@ namespace DeadlineVisualizer.Resources {
         internal static string OpenFileButtonText {
             get {
                 return ResourceManager.GetString("OpenFileButtonText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Couldn&apos;t save file.
+        /// </summary>
+        internal static string SaveError {
+            get {
+                return ResourceManager.GetString("SaveError", resourceCulture);
             }
         }
         

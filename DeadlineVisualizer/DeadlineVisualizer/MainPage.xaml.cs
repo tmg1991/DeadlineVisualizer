@@ -1,4 +1,6 @@
-﻿namespace DeadlineVisualizer
+﻿using CommunityToolkit.Maui.Storage;
+
+namespace DeadlineVisualizer
 {
     public partial class MainPage : ContentPage
     {
@@ -25,6 +27,39 @@
             base.OnNavigatedTo(args);
         }
 
+        private async void SaveButton_Clicked(object sender, EventArgs e)
+        {
+            var jsonStream = _viewModel.GetSerializedMilestones();
+            var fileSaverResult = await FileSaver.Default.SaveAsync("new_deadlines.json", jsonStream, CancellationToken.None);
+            try
+            {
+                fileSaverResult.EnsureSuccess();
+            }
+            catch (Exception ex)
+            {
+                await DisplayAlert(DeadlineVisualizer.Resources.AppRes.SaveError, ex.Message, "OK");
+            }
+            finally
+            {
+                jsonStream?.Dispose();
+            }
+        }
+
+        private async void OpenButton_Clicked(object sender, EventArgs e)
+        {
+            var dialogResult = await FilePicker.Default.PickAsync();
+            if (dialogResult != null)
+            {
+                try
+                {
+                    await _viewModel.LoadFromFileAsync(dialogResult.FullPath);
+                }
+                catch (Exception ex)
+                {
+                    await DisplayAlert(DeadlineVisualizer.Resources.AppRes.LoadError, ex.Message, "OK");
+                }
+            }
+        }
     }
 
 }

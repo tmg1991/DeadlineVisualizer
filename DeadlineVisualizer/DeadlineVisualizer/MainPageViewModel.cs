@@ -5,6 +5,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
+using System.Text.Json;
 using System.Threading.Tasks;
 using System.Windows.Input;
 
@@ -12,7 +13,7 @@ namespace DeadlineVisualizer
 {
     public class MainPageViewModel : NotifyBase
     {
-        private ObservableCollection<Milestone> _milestones;
+        private ObservableCollection<Milestone> _milestones = new();
         private readonly MilestoneBuffer _milestoneBuffer;
 
         public ObservableCollection<Milestone> Milestones
@@ -40,8 +41,33 @@ namespace DeadlineVisualizer
             if (_milestoneBuffer.HasData())
             {
                 var milestone = _milestoneBuffer.Dequeue();
-                //TODO update to-be-collection based on GUID
+                UpdateCollection(milestone);
             }
+        }
+
+        public Stream GetSerializedMilestones()
+        {
+            var options = new JsonSerializerOptions { WriteIndented = true, };
+            string json = JsonSerializer.Serialize<ObservableCollection<Milestone>>(Milestones, options);
+            var stream = new MemoryStream(Encoding.Default.GetBytes(json));
+            return stream;
+        }
+
+        public async Task LoadFromFileAsync(string filepath)
+        {
+            var jsonString = await File.ReadAllTextAsync(filepath);
+            using var stream = new MemoryStream(Encoding.Default.GetBytes(jsonString));
+            var data = await JsonSerializer.DeserializeAsync<ObservableCollection<Milestone>>(stream);
+        }
+
+        private void UpdateCollection(Milestone milestone)
+        {
+            if(Milestones.Any(_ => _.ID == milestone.ID))
+            {
+                var matching = Milestones.First(_ => _.ID == milestone.ID);
+                Milestones.Remove(matching);
+            }
+            Milestones.Add(milestone);
         }
 
         private void NewFile() { throw new NotImplementedException(); }

@@ -10,8 +10,8 @@
         </Grid.ColumnDefinitions>
         <VerticalStackLayout Spacing="15">
             <Button Text="{x:Static res:AppRes.NewFileButtonText}" Command="{Binding NewFileCommand}"/>
-            <Button Text="{x:Static res:AppRes.OpenFileButtonText}" Command="{Binding OpenFileCommand}"/>
-            <Button Text="{x:Static res:AppRes.SaveFileButtonText}" Command="{Binding SaveFileCommand}"/>
+            <Button Text="{x:Static res:AppRes.OpenFileButtonText}" Clicked="OpenButton_Clicked"/>
+            <Button Text="{x:Static res:AppRes.SaveFileButtonText}" Clicked="SaveButton_Clicked"/>
             <Button Text="+" Command="{Binding AddMilestoneCommand}" WidthRequest="50" HeightRequest="50" Margin="30" CornerRadius="200"/>
         </VerticalStackLayout>
     </Grid>

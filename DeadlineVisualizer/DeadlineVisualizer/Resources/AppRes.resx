@@ -135,6 +135,9 @@
   <data name="DetailsPageTitle" xml:space="preserve">
     <value>Details</value>
   </data>
+  <data name="LoadError" xml:space="preserve">
+    <value>Couldn't load file</value>
+  </data>
   <data name="MainPageTitle" xml:space="preserve">
     <value>Visualizer</value>
   </data>
@@ -155,6 +158,9 @@
   </data>
   <data name="OpenFileButtonText" xml:space="preserve">
     <value>Open...</value>
+  </data>
+  <data name="SaveError" xml:space="preserve">
+    <value>Couldn't save file</value>
   </data>
   <data name="SaveFileButtonText" xml:space="preserve">
     <value>Save</value>

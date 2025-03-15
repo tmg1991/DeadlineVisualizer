@@ -36,11 +36,27 @@ namespace DeadlineVisualizer
         public Color Color
         {
             get { return _color; }
-            set { _color = value; NotifyPropertyChanged(); }
+            set
+            {
+                _color = value;
+                ColorHex = value.ToHex();
+                NotifyPropertyChanged();
+            }
         }
 
-
-
+        private string _colorHex;
+        public string ColorHex
+        {
+            get { return _colorHex; }
+            set
+            {
+                if (_colorHex != value)
+                {
+                    _colorHex = value;
+                    Color = Color.FromHex(value);
+                }
+            }
+        }
 
         public Milestone()
         {
