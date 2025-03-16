@@ -1,6 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:DeadlineVisualizer"
              x:Class="DeadlineVisualizer.MainPage"
              xmlns:res="clr-namespace:DeadlineVisualizer.Resources">
     <Grid Margin="15">
@@ -10,7 +11,7 @@
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="1*"/>
-            <RowDefinition Height="10*"/>
+            <RowDefinition Height="20*"/>
         </Grid.RowDefinitions>
         <HorizontalStackLayout Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Spacing="15">
             <Label Text="{x:Static res:AppRes.CurrentFile}" HorizontalOptions="Start" FontAttributes="Bold"/>
@@ -24,6 +25,7 @@
             <Button Text="{x:Static res:AppRes.SaveFileAsButtonText}" Clicked="SaveAsButton_Clicked"/>
             <Button Text="+" Command="{Binding AddMilestoneCommand}" WidthRequest="50" HeightRequest="50" Margin="30" CornerRadius="200"/>
         </VerticalStackLayout>
+        <local:CalendarView Grid.Row="1" Grid.Column="1" Milestones="{Binding Milestones}"/>
     </Grid>
     
 

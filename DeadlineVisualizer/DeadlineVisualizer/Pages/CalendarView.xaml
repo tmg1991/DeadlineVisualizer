@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="DeadlineVisualizer.CalendarView">
+    <Border Background="Azure">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="10*"/>
+            </Grid.RowDefinitions>
+            <!--<Picker x:Name="timeResolutionPicker" Grid.Row="0" ItemsSource="{Binding CalendarUnitDescriptions}" SelectedItem="{Binding SelectedCalendarUnitDescription}" ItemDisplayBinding="{Binding Name}" HorizontalOptions="End"/>-->
+            <Picker x:Name="timeResolutionPicker" Grid.Row="0"  HorizontalOptions="End"/>
+            <!-- this is calendar grid-->
+            <ScrollView Grid.Row="1" >
+                <Grid x:Name="calendarGrid"/>
+            </ScrollView>
+        </Grid>
+    </Border>
+</ContentView>
