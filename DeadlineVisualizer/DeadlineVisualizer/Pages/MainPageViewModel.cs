@@ -91,12 +91,23 @@ namespace DeadlineVisualizer
 
         private void UpdateCollection(Milestone milestone)
         {
+            int index = -1;
             if(Milestones.Any(_ => _.ID == milestone.ID))
             {
                 var matching = Milestones.First(_ => _.ID == milestone.ID);
+                index = Milestones.IndexOf(matching);
                 Milestones.Remove(matching);
             }
-            Milestones.Add(milestone);
+
+            if (index < 0)
+            {
+                Milestones.Add(milestone);
+            }
+            else 
+            {
+                Milestones.Insert(index, milestone); 
+            }
+
         }
 
         private void NewFile() { throw new NotImplementedException(); }
