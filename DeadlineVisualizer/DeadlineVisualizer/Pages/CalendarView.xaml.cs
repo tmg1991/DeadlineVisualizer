@@ -74,15 +74,15 @@ public partial class CalendarView : ContentView
     {
         for (int i = 0; i < milestones.Count(); i++)
         {
-            var label = new Label() { Text = milestones[i].Title , HorizontalTextAlignment = TextAlignment.Start};
-            calendarGrid.Add(label, 0, i);
+            var thumbnail = new MilestoneThumbnailView(milestones[i]);
+            calendarGrid.Add(thumbnail, 0, i);
         }
     }
 
 
     public CalendarView()
-	{
-		InitializeComponent();
+    {
+        InitializeComponent();
         FillPicker();
     }
 

@@ -25,6 +25,7 @@ namespace DeadlineVisualizer
             builder.Services.AddSingleton<MainPage>();
             builder.Services.AddSingleton<MainPageViewModel>();
             builder.Services.AddSingleton<MilestoneBuffer>();
+            builder.Services.AddTransient<MilestoneThumbnailViewModel>();
             return builder.Build();
         }
     }
