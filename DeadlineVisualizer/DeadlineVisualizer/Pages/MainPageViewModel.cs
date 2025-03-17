@@ -49,10 +49,20 @@ namespace DeadlineVisualizer
         public MainPageViewModel(MilestoneBuffer milestoneBuffer)
         {
             _milestoneBuffer = milestoneBuffer;
+            _milestoneBuffer.MilestoneDeleteRequested += MilestoneBuffer_MilestoneDeleteRequested;
             NewFileCommand = new Command(NewFile);
             OpenFileCommand = new Command(OpenFile);
             SaveFileCommand = new Command(SaveFile);
             AddMilestoneCommand = new Command(AddMilestone);
+        }
+
+        private void MilestoneBuffer_MilestoneDeleteRequested(object? sender, Milestone e)
+        {
+            if (Milestones.Any(_ => _.ID == e.ID))
+            {
+                var matching = Milestones.First(_ => _.ID == e.ID);
+                Milestones.Remove(matching);
+            }
         }
 
         public void OnNavigatedTo()

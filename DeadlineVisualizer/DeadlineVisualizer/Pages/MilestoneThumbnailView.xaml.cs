@@ -11,7 +11,7 @@ public partial class MilestoneThumbnailView : ContentView
 	{
         var context = Application.Current.Handler.MauiContext;
         _milestoneBuffer = context.Services.GetService<MilestoneBuffer>();
-        _viewModel = new MilestoneThumbnailViewModel(milestone);
+        _viewModel = new MilestoneThumbnailViewModel(milestone, _milestoneBuffer);
 		BindingContext = _viewModel;
         _viewModel.MilestoneChangeRequested += ViewModel_MilestoneChangeRequested;
 		InitializeComponent();

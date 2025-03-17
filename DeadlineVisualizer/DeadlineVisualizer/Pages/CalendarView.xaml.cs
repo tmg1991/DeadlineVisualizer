@@ -61,7 +61,8 @@ public partial class CalendarView : ContentView
         calendarGrid.Children.Clear();
         for (int i = 0; i < MAX_COLUMNS + 1; i++)
         {
-            calendarGrid.ColumnDefinitions.Add(new ColumnDefinition() { Width = new GridLength(1, GridUnitType.Star) });
+            int width = i == 0 ? 2 : 1;
+            calendarGrid.ColumnDefinitions.Add(new ColumnDefinition() { Width = new GridLength(width, GridUnitType.Star) });
         }
 
         for (int i = 0; i < milestonesCount + 1; i++)
@@ -75,7 +76,7 @@ public partial class CalendarView : ContentView
         for (int i = 0; i < milestones.Count(); i++)
         {
             var thumbnail = new MilestoneThumbnailView(milestones[i]);
-            calendarGrid.Add(thumbnail, 0, i);
+            calendarGrid.Add(thumbnail, 0, i+1);
         }
     }
 
