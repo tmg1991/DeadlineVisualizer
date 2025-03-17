@@ -1,5 +1,6 @@
 using CommunityToolkit.Maui.Views;
 using Microsoft.Maui.Controls;
+using Microsoft.Maui.Controls.Shapes;
 using System.Collections.ObjectModel;
 using System.Globalization;
 using System.Runtime.CompilerServices;
@@ -11,6 +12,7 @@ public partial class CalendarView : ContentView
     private const int MAX_COLUMNS = 15;
     private List<CalendarUnitDescription> calendarUnitDescriptions = new();
 
+    public List<DateTime> VisibleDatesOnUI { get; set; } = new();
     public DateTime StartingDate { get; private set; }
     public CalendarUnitDescription SelectedCalendarUnitDescription
     {
@@ -68,12 +70,13 @@ public partial class CalendarView : ContentView
         AddMilestonesToGrid(view.calendarGrid, milestones);
 
         CreateHeader(view);
-        
-        
+
+        AddColorizedMarks(view, milestones);
     }
 
     private static void CreateHeader(CalendarView view)
     {
+        view.VisibleDatesOnUI.Clear();
         for (int i = 0; i < MAX_COLUMNS; i++)
         {
             var date = view.StartingDate;
@@ -90,6 +93,7 @@ public partial class CalendarView : ContentView
                 date = date.AddDays(i);
                 headerText = $"{date.Year}{Environment.NewLine}{date.ToString("MMM dd")}";// date.ToString("yyyy MM dd").Replace(' ', '\n');
             }
+            view.VisibleDatesOnUI.Add(date);
             var label = new Label() { Text = headerText, LineBreakMode = LineBreakMode.WordWrap,  Scale = 0.8};
             view.calendarGrid.Add(label, i + 1, 0);
         }
@@ -122,6 +126,58 @@ public partial class CalendarView : ContentView
         }
     }
 
+    private static void AddColorizedMarks(CalendarView view, ObservableCollection<Milestone> milestones)
+    {
+        for (int row = 0; row < milestones.Count; row++)
+        {
+            for (int col = 0; col < view.VisibleDatesOnUI.Count; col++)
+            {
+                var milestone = milestones[row];
+                var currentDateInCell = view.VisibleDatesOnUI[col];
+                
+                if(currentDateInCell > milestone.Deadline)
+                {
+                    continue;
+                }
+                Color color = GetColor(currentDateInCell, milestone);
+
+                var box = new Border()
+                {
+                    Stroke = color,
+                    BackgroundColor = color,
+                    StrokeThickness = 4,
+                    HorizontalOptions = LayoutOptions.Center,
+                    HeightRequest = 10,
+                    WidthRequest = 35,
+                    StrokeShape = new RoundRectangle
+                    {
+                        CornerRadius = new CornerRadius(10, 10, 10, 10)
+                    },
+                };
+                view.calendarGrid.Add(box, col+1, row+1);
+                
+            }
+        }
+    }
+
+    private static Color GetColor(DateTime dateInCell, Milestone milestone)
+    {
+        var timeDifference = (milestone.Deadline - dateInCell).Days;
+        if (timeDifference > milestone.WarningLevel1)
+        {
+            return Colors.Green;
+        }
+        if(timeDifference > milestone.WarningLevel2)
+        {
+            return Colors.Yellow;
+        }
+        if (timeDifference > milestone.WarningLevel3)
+        {
+            return Colors.Orange;
+        }
+        return Colors.Red;
+
+    }
 
     public CalendarView()
     {
