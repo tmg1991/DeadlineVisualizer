@@ -67,7 +67,8 @@ public partial class CalendarView : ContentView
 
         for (int i = 0; i < milestonesCount + 1; i++)
         {
-            calendarGrid.RowDefinitions.Add(new RowDefinition() { Height = new GridLength(1, GridUnitType.Star) });
+            var height = i == 0 ? new GridLength(15, GridUnitType.Absolute) : new GridLength(1, GridUnitType.Star);
+            calendarGrid.RowDefinitions.Add(new RowDefinition() { Height = height });
         }
     }
 

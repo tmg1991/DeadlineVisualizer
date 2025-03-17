@@ -127,7 +127,12 @@ namespace DeadlineVisualizer
         }
         private void AddMilestone()
         {
-            var mileStone = new Milestone() { Deadline = DateTime.Today};
+            var mileStone = new Milestone() {
+                Deadline = DateTime.Today,
+                WarningLevel1 = Preferences.Default.Get(Constants.warning_level_1_distance_key, Constants.warning_level_1_distance),
+                WarningLevel2 = Preferences.Default.Get(Constants.warning_level_2_distance_key, Constants.warning_level_2_distance),
+                WarningLevel3 = Preferences.Default.Get(Constants.warning_level_3_distance_key, Constants.warning_level_3_distance),
+            };
             MilestoneChangeRequested?.Invoke(this, mileStone);
         }
 

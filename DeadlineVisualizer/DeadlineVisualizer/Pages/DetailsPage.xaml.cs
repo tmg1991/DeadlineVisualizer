@@ -28,13 +28,16 @@ public partial class DetailsPage : ContentPage
 			Title = milestone.Title,
 			Deadline = milestone.Deadline,
 			Color = milestone.Color,
-			Notes = milestone.Notes
+			Notes = milestone.Notes,
+			WarningLevel1 = milestone.WarningLevel1,
+			WarningLevel2 = milestone.WarningLevel2,
+			WarningLevel3 = milestone.WarningLevel3
 		};
 		BindingContext = this;
 		InitializeComponent();
 	}
 
-    private void Button_Clicked(object sender, EventArgs e)
+    private void ColorButton_Clicked(object sender, EventArgs e)
     {
 		if(counter == AvailableColors.Count() - 1 ) { counter = -1; }
 		MilestoneClone.Color = AvailableColors[++counter];
@@ -53,12 +56,25 @@ public partial class DetailsPage : ContentPage
             return;
 		}
 
+		if (!(AreDistancesValid(MilestoneClone))){
+            ErrorMessage = DeadlineVisualizer.Resources.AppRes.SettingsErrorMessage;
+            return;
+		}
+
 		_milestone.Title = MilestoneClone.Title;
 		_milestone.Deadline = MilestoneClone.Deadline;
 		_milestone.Color = MilestoneClone.Color;
 		_milestone.Notes = MilestoneClone.Notes;
+		_milestone.WarningLevel1 = MilestoneClone.WarningLevel1;
+		_milestone.WarningLevel2 = MilestoneClone.WarningLevel2;
+		_milestone.WarningLevel3 = MilestoneClone.WarningLevel3;
 
 		_milestoneBuffer.Enqueue( _milestone );
 		Navigation.RemovePage(this);
     }
+
+    private bool AreDistancesValid(Milestone milestone) => milestone.WarningLevel3 > 0 &&
+            milestone.WarningLevel2 > milestone.WarningLevel3 &&
+            milestone.WarningLevel1 > milestone.WarningLevel2;
+
 }

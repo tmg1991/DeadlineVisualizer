@@ -5,8 +5,11 @@
              xmlns:res="clr-namespace:DeadlineVisualizer.Resources"
              Title="{x:Static res:AppRes.DetailsPageTitle }"
              Background="AliceBlue">
-    <Grid Margin="15" RowSpacing="20">
+    <Grid Margin="15" RowSpacing="5" Scale="0.9">
         <Grid.RowDefinitions>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
             <RowDefinition Height="1*"/>
             <RowDefinition Height="1*"/>
             <RowDefinition Height="1*"/>
@@ -33,9 +36,16 @@
         <DatePicker Grid.Row="2" Grid.Column="1" Date="{Binding MilestoneClone.Deadline}" HorizontalOptions="End" WidthRequest="150"/>
 
         <Label Grid.Row="3" Grid.Column="0" Text="{x:Static res:AppRes.MilestoneColor}" HorizontalOptions="Start"/>
-        <Button Grid.Row="3" Grid.Column="1" BackgroundColor="{Binding MilestoneClone.Color}" HorizontalOptions="End" WidthRequest="150" Clicked="Button_Clicked"/>
+        <Button Grid.Row="3" Grid.Column="1" BackgroundColor="{Binding MilestoneClone.Color}" HorizontalOptions="End" WidthRequest="150" Clicked="ColorButton_Clicked"/>
 
-        <Label Grid.Row="4" Grid.Column="0" Text="{x:Static res:AppRes.MilestoneNotes}" HorizontalOptions="Start"/>
-        <Editor Grid.Row="4" Grid.Column="1" Text="{Binding MilestoneClone.Notes}" HorizontalOptions="End" WidthRequest="150" HeightRequest="100"/>
+        <Label Grid.Row="4" Grid.Column="0" Text="{x:Static res:AppRes.WarningLevel1DistanceText }" VerticalOptions="Center" HorizontalOptions="Start"/>
+        <Entry Grid.Row="4" Grid.Column="1" Text="{Binding MilestoneClone.WarningLevel1}" HorizontalOptions="End"/>
+        <Label Grid.Row="5" Grid.Column="0" Text="{x:Static res:AppRes.WarningLevel2DistanceText }" VerticalOptions="Center" HorizontalOptions="Start"/>
+        <Entry Grid.Row="5" Grid.Column="1" Text="{Binding MilestoneClone.WarningLevel2}" HorizontalOptions="End"/>
+        <Label Grid.Row="6" Grid.Column="0" Text="{x:Static res:AppRes.WarningLevel3DistanceText }" VerticalOptions="Center" HorizontalOptions="Start"/>
+        <Entry Grid.Row="6" Grid.Column="1" Text="{Binding MilestoneClone.WarningLevel3}" HorizontalOptions="End"/>
+
+        <Label Grid.Row="7" Grid.Column="0" Text="{x:Static res:AppRes.MilestoneNotes}" HorizontalOptions="Start"/>
+        <Editor Grid.Row="7" Grid.Column="1" Text="{Binding MilestoneClone.Notes}" HorizontalOptions="End" WidthRequest="150" HeightRequest="100" VerticalOptions="Start"/>
     </Grid>
 </ContentPage>

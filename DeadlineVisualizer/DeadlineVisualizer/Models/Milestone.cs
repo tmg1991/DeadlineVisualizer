@@ -58,6 +58,28 @@ namespace DeadlineVisualizer
             }
         }
 
+        private int _warningLevel1;
+        public int WarningLevel1
+        {
+            get { return _warningLevel1; }
+            set { _warningLevel1 = value; NotifyPropertyChanged(); }
+        }
+
+        private int _warningLevel2;
+        public int WarningLevel2
+        {
+            get { return _warningLevel2; }
+            set { _warningLevel2 = value; NotifyPropertyChanged(); }
+        }
+
+        private int _warningLevel3;
+        public int WarningLevel3
+        {
+            get { return _warningLevel3; }
+            set { _warningLevel3 = value; NotifyPropertyChanged(); }
+        }
+
+
         public Milestone()
         {
             ID = Guid.NewGuid();

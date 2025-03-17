@@ -268,7 +268,7 @@ namespace DeadlineVisualizer.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Warning Level 1 (days).
+        ///   Looks up a localized string similar to Warning Level 1 (yellow) days.
         /// </summary>
         internal static string WarningLevel1DistanceText {
             get {
@@ -277,7 +277,7 @@ namespace DeadlineVisualizer.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Warning Level 2 (days).
+        ///   Looks up a localized string similar to Warning Level 2 (orange) days.
         /// </summary>
         internal static string WarningLevel2DistanceText {
             get {
@@ -286,7 +286,7 @@ namespace DeadlineVisualizer.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Warning Level 3 (days).
+        ///   Looks up a localized string similar to Warning Level 3 (red) days.
         /// </summary>
         internal static string WarningLevel3DistanceText {
             get {
