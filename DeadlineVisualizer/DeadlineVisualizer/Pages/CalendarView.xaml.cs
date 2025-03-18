@@ -1,9 +1,6 @@
-using CommunityToolkit.Maui.Views;
-using Microsoft.Maui.Controls;
 using Microsoft.Maui.Controls.Shapes;
 using System.Collections.ObjectModel;
 using System.Globalization;
-using System.Runtime.CompilerServices;
 
 namespace DeadlineVisualizer;
 
@@ -22,6 +19,7 @@ public partial class CalendarView : ContentView
             Update(this, Milestones);
         }
     }
+
     public CalendarUnitDescription SelectedCalendarUnitDescription
     {
         get => selectedCalendarUnitDescription;
@@ -165,7 +163,6 @@ public partial class CalendarView : ContentView
                     },
                 };
                 view.calendarGrid.Add(box, col+1, row+1);
-                
             }
         }
     }
@@ -186,7 +183,6 @@ public partial class CalendarView : ContentView
             return Colors.Orange;
         }
         return Colors.Red;
-
     }
 
     public CalendarView()

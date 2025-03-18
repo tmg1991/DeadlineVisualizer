@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.ComponentModel;
-using System.Linq;
-using System.Runtime.CompilerServices;
+﻿using System.Collections.ObjectModel;
 using System.Text;
 using System.Text.Json;
-using System.Threading.Tasks;
 using System.Windows.Input;
 
 namespace DeadlineVisualizer
@@ -50,26 +44,14 @@ namespace DeadlineVisualizer
 
         public ICommand AddMilestoneCommand { get; private set; }
 
+        public event EventHandler<Milestone> MilestoneChangeRequested;
+
         public MainPageViewModel(MilestoneBuffer milestoneBuffer)
         {
             _milestoneBuffer = milestoneBuffer;
             _milestoneBuffer.MilestoneDeleteRequested += MilestoneBuffer_MilestoneDeleteRequested;
             AddMilestoneCommand = new Command(AddMilestone);
             Milestones.CollectionChanged += Milestones_CollectionChanged;
-        }
-
-        private void Milestones_CollectionChanged(object? sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
-        {
-            IsDirty = true;
-        }
-
-        private void MilestoneBuffer_MilestoneDeleteRequested(object? sender, Milestone e)
-        {
-            if (Milestones.Any(_ => _.ID == e.ID))
-            {
-                var matching = Milestones.First(_ => _.ID == e.ID);
-                Milestones.Remove(matching);
-            }
         }
 
         public void OnNavigatedTo()
@@ -110,6 +92,20 @@ namespace DeadlineVisualizer
             IsDirty = false;
         }
 
+        private void Milestones_CollectionChanged(object? sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
+        {
+            IsDirty = true;
+        }
+
+        private void MilestoneBuffer_MilestoneDeleteRequested(object? sender, Milestone e)
+        {
+            if (Milestones.Any(_ => _.ID == e.ID))
+            {
+                var matching = Milestones.First(_ => _.ID == e.ID);
+                Milestones.Remove(matching);
+            }
+        }
+
         private void UpdateCollection(Milestone milestone)
         {
             int index = -1;
@@ -141,8 +137,5 @@ namespace DeadlineVisualizer
             };
             MilestoneChangeRequested?.Invoke(this, mileStone);
         }
-
-
-        public event EventHandler<Milestone> MilestoneChangeRequested;
     }
 }

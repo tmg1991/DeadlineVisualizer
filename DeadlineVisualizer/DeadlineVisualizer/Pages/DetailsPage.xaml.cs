@@ -9,13 +9,11 @@ public partial class DetailsPage : ContentPage
     public Milestone MilestoneClone { get; private set; }
 
 	private string _errorMessage;
-
 	public string ErrorMessage
 	{
 		get { return _errorMessage; }
 		set { _errorMessage = value; OnPropertyChanged(); }
 	}
-
 
 	public List<Color> AvailableColors { get; private set; } = new List<Color>() { Colors.Lavender, Colors.CornflowerBlue, Colors.DarkSalmon, Colors.DarkSeaGreen, Colors.Gray, Colors.Plum, Colors.Crimson };
 
@@ -76,5 +74,4 @@ public partial class DetailsPage : ContentPage
     private bool AreDistancesValid(Milestone milestone) => milestone.WarningLevel3 > 0 &&
             milestone.WarningLevel2 > milestone.WarningLevel3 &&
             milestone.WarningLevel1 > milestone.WarningLevel2;
-
 }

@@ -5,8 +5,6 @@ public partial class MilestoneThumbnailView : ContentView
 	private readonly MilestoneThumbnailViewModel _viewModel;
     private readonly MilestoneBuffer _milestoneBuffer;
 
-    
-
     public MilestoneThumbnailView(Milestone milestone)
 	{
         var context = Application.Current.Handler.MauiContext;

@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace DeadlineVisualizer
+﻿namespace DeadlineVisualizer
 {
     public class Milestone : NotifyBase
     {
@@ -78,7 +72,6 @@ namespace DeadlineVisualizer
             get { return _warningLevel3; }
             set { _warningLevel3 = value; NotifyPropertyChanged(); }
         }
-
 
         public Milestone()
         {

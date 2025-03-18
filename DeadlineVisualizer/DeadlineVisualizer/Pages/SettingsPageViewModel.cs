@@ -94,7 +94,16 @@ namespace DeadlineVisualizer
             }
         }
 
-        private void Save() 
+        internal void OnAppearing()
+        {            
+            WarningLevel1Distance = Preferences.Default.Get(Constants.warning_level_1_distance_key, Constants.warning_level_1_distance);
+            WarningLevel2Distance = Preferences.Default.Get(Constants.warning_level_2_distance_key, Constants.warning_level_2_distance);
+            WarningLevel3Distance = Preferences.Default.Get(Constants.warning_level_3_distance_key, Constants.warning_level_3_distance);
+
+            var unitFromSettings = Preferences.Default.Get(Constants.default_calendar_unit, CalendarUnits.CalendarWeeks.ToString());
+            SelectedCalendarUnitDescription = CalendarUnitDescriptions.First(_ => _.Unit.ToString() == unitFromSettings);
+        }
+        private void Save()
         {
             ShouldShowSaveSuccess = false;
             if (AreDistancesValid())
@@ -110,16 +119,6 @@ namespace DeadlineVisualizer
             }
             ShouldShowError = true;
         }
-
-        internal void OnAppearing()
-        {            
-            WarningLevel1Distance = Preferences.Default.Get(Constants.warning_level_1_distance_key, Constants.warning_level_1_distance);
-            WarningLevel2Distance = Preferences.Default.Get(Constants.warning_level_2_distance_key, Constants.warning_level_2_distance);
-            WarningLevel3Distance = Preferences.Default.Get(Constants.warning_level_3_distance_key, Constants.warning_level_3_distance);
-
-            var unitFromSettings = Preferences.Default.Get(Constants.default_calendar_unit, CalendarUnits.CalendarWeeks.ToString());
-            SelectedCalendarUnitDescription = CalendarUnitDescriptions.First(_ => _.Unit.ToString() == unitFromSettings);
-        }  
 
         private bool AreDistancesValid() => _warningLevel3Distance > 0 &&
             _warningLevel2Distance > _warningLevel3Distance &&

@@ -114,5 +114,4 @@ namespace DeadlineVisualizer
             _viewModel.Clear();
         }
     }
-
 }
