@@ -2,7 +2,7 @@
 <ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="DeadlineVisualizer.MilestoneThumbnailView">
-    <Border Margin="2" MaximumHeightRequest="100">
+    <Border Margin="2" HeightRequest="100" >
         <Grid Background="{Binding Milestone.Color}" ToolTipProperties.Text="{Binding Milestone.Notes}">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="1*"/>
@@ -18,10 +18,5 @@
             <Button Scale="0.5" BackgroundColor="AliceBlue" Grid.Row="2" Grid.Column="0" Text="✎" Command="{Binding EditCommand}" CommandParameter="{Binding .}"  HorizontalOptions="Start" />
             <Button Scale="0.5" BackgroundColor="AliceBlue" Grid.Row="2" Grid.Column="1" Text="❌" Command="{Binding RemoveCommand}" CommandParameter="{Binding .}"  HorizontalOptions="Start" />
         </Grid>
-        <!--<VerticalStackLayout Background="{Binding Milestone.Color}" ToolTipProperties.Text="{Binding Milestone.Notes}">
-            <Label Text="{Binding Milestone.Title}" HorizontalOptions="Start" FontAttributes="Bold" FontSize="12"/>
-            <Label Text="{Binding Milestone.Deadline, StringFormat='{0:yyyy-MM-dd}'}" HorizontalOptions="Start" FontSize="10" />
-            
-        </VerticalStackLayout>-->
     </Border>
 </ContentView>

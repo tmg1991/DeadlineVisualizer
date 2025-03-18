@@ -42,6 +42,7 @@ namespace DeadlineVisualizer
                     {
                         await jsonStream.CopyToAsync(fileStream);
                     };
+                    _viewModel.IsDirty = false;
                 }
                 catch (Exception ex)
                 {
@@ -58,6 +59,7 @@ namespace DeadlineVisualizer
             {
                 fileSaverResult.EnsureSuccess();
                 _viewModel.CurrentFileFullPath = fileSaverResult.FilePath;
+                _viewModel.IsDirty = false;
             }
             catch (Exception ex)
             {

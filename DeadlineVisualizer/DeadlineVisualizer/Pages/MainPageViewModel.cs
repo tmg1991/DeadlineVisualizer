@@ -41,19 +41,26 @@ namespace DeadlineVisualizer
             }
         }
 
-        public ICommand NewFileCommand { get; private set; }
-        public ICommand OpenFileCommand { get; private set; }
-        public ICommand SaveFileCommand { get; private set; }
+        private bool _isDirty;
+        public bool IsDirty
+        {
+            get { return _isDirty; }
+            set { _isDirty = value; NotifyPropertyChanged(); }
+        }
+
         public ICommand AddMilestoneCommand { get; private set; }
 
         public MainPageViewModel(MilestoneBuffer milestoneBuffer)
         {
             _milestoneBuffer = milestoneBuffer;
             _milestoneBuffer.MilestoneDeleteRequested += MilestoneBuffer_MilestoneDeleteRequested;
-            NewFileCommand = new Command(NewFile);
-            OpenFileCommand = new Command(OpenFile);
-            SaveFileCommand = new Command(SaveFile);
             AddMilestoneCommand = new Command(AddMilestone);
+            Milestones.CollectionChanged += Milestones_CollectionChanged;
+        }
+
+        private void Milestones_CollectionChanged(object? sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
+        {
+            IsDirty = true;
         }
 
         private void MilestoneBuffer_MilestoneDeleteRequested(object? sender, Milestone e)
@@ -89,7 +96,10 @@ namespace DeadlineVisualizer
             var data = await JsonSerializer.DeserializeAsync<ObservableCollection<Milestone>>(stream);
             if (data != null)
             {
+                Milestones.CollectionChanged -= Milestones_CollectionChanged;
                 Milestones = data;
+                Milestones.CollectionChanged += Milestones_CollectionChanged;
+                IsDirty = false;
             }
         }
 
@@ -97,6 +107,7 @@ namespace DeadlineVisualizer
         {
             Milestones.Clear();
             CurrentFileFullPath = string.Empty;
+            IsDirty = false;
         }
 
         private void UpdateCollection(Milestone milestone)
@@ -120,11 +131,6 @@ namespace DeadlineVisualizer
 
         }
 
-        private void NewFile() { throw new NotImplementedException(); }
-        private void OpenFile() { throw new NotImplementedException(); }
-        private void SaveFile() { throw new NotImplementedException();
-        
-        }
         private void AddMilestone()
         {
             var mileStone = new Milestone() {
