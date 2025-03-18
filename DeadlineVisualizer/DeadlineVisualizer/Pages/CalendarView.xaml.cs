@@ -13,7 +13,15 @@ public partial class CalendarView : ContentView
     private List<CalendarUnitDescription> calendarUnitDescriptions = new();
 
     public List<DateTime> VisibleDatesOnUI { get; set; } = new();
-    public DateTime StartingDate { get; private set; }
+    public DateTime StartingDate
+    {
+        get => startingDate;
+        private set 
+        { 
+            startingDate = value;
+            Update(this, Milestones);
+        }
+    }
     public CalendarUnitDescription SelectedCalendarUnitDescription
     {
         get => selectedCalendarUnitDescription;
@@ -27,6 +35,7 @@ public partial class CalendarView : ContentView
     public static readonly BindableProperty MilestonesProperty =
   BindableProperty.Create(nameof(Milestone), typeof(ObservableCollection<Milestone>), typeof(CalendarView), default(ObservableCollection<Milestone>), propertyChanged: OnMilestonesChanged);
     private CalendarUnitDescription selectedCalendarUnitDescription;
+    private DateTime startingDate;
 
     public ObservableCollection<Milestone> Milestones
     {
@@ -208,12 +217,12 @@ public partial class CalendarView : ContentView
 
     private void LeftButton_Clicked(object sender, EventArgs e)
     {
-        StartingDate.AddDays(-7);
+        StartingDate = StartingDate.AddDays(-7);
     }
 
     private void RightButton_Clicked(object sender, EventArgs e)
     {
-        StartingDate.AddDays(7);
+        StartingDate = StartingDate.AddDays(7);
     }
 
     private void timeResolutionPicker_SelectedIndexChanged(object sender, EventArgs e)
