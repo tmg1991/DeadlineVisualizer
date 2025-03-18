@@ -225,6 +225,11 @@ public partial class CalendarView : ContentView
         StartingDate = StartingDate.AddDays(7);
     }
 
+    private void TodayButton_Clicked(object sender, EventArgs e)
+    {
+        StartingDate = DateTime.Today;
+    }
+
     private void timeResolutionPicker_SelectedIndexChanged(object sender, EventArgs e)
     {
         SelectedCalendarUnitDescription = calendarUnitDescriptions[timeResolutionPicker.SelectedIndex];

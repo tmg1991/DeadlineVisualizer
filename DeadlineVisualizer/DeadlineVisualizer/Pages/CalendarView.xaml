@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:res="clr-namespace:DeadlineVisualizer.Resources"
              x:Class="DeadlineVisualizer.CalendarView">
     <Border Background="Azure">
         <Grid>
@@ -11,6 +12,7 @@
             
             <HorizontalStackLayout Margin="10,0,0,0" ScaleY="0.9" Grid.Row="0" HorizontalOptions="StartAndExpand" Spacing="30">
                 <Button BackgroundColor="LightGray" FontAttributes="Bold" TextColor="Black" Text="⇦" Clicked="LeftButton_Clicked" HorizontalOptions="Start"/>
+                <Button BackgroundColor="DarkGray" FontAttributes="Bold" TextColor="Black" Text="{x:Static res:AppRes.Today}" Clicked="TodayButton_Clicked" HorizontalOptions="Center"/>
                 <Button BackgroundColor="LightGray" FontAttributes="Bold" TextColor="Black" Text="⇨" Clicked="RightButton_Clicked" HorizontalOptions="Start"/>
                 <Picker x:Name="timeResolutionPicker" SelectedIndexChanged="timeResolutionPicker_SelectedIndexChanged"  HorizontalOptions="End"/>
             </HorizontalStackLayout>

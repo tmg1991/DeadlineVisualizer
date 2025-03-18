@@ -186,6 +186,9 @@
   <data name="TitleShouldNotBeEmpty" xml:space="preserve">
     <value>Title should not be empty</value>
   </data>
+  <data name="Today" xml:space="preserve">
+    <value>Today</value>
+  </data>
   <data name="WarningLevel1DistanceText" xml:space="preserve">
     <value>Warning Level 1 (yellow) days</value>
   </data>
