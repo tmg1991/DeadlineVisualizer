@@ -88,6 +88,15 @@ namespace DeadlineVisualizer.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Current file has been modified.
+        /// </summary>
+        internal static string CurrentFileHasBeenModified {
+            get {
+                return ResourceManager.GetString("CurrentFileHasBeenModified", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Days.
         /// </summary>
         internal static string DaysString {
@@ -187,11 +196,29 @@ namespace DeadlineVisualizer.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to No.
+        /// </summary>
+        internal static string No {
+            get {
+                return ResourceManager.GetString("No", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Open....
         /// </summary>
         internal static string OpenFileButtonText {
             get {
                 return ResourceManager.GetString("OpenFileButtonText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Would you like to proceed without saving it?.
+        /// </summary>
+        internal static string ProceedWithoutSaving {
+            get {
+                return ResourceManager.GetString("ProceedWithoutSaving", resourceCulture);
             }
         }
         
@@ -300,6 +327,15 @@ namespace DeadlineVisualizer.Resources {
         internal static string WarningLevel3DistanceText {
             get {
                 return ResourceManager.GetString("WarningLevel3DistanceText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Yes.
+        /// </summary>
+        internal static string Yes {
+            get {
+                return ResourceManager.GetString("Yes", resourceCulture);
             }
         }
     }

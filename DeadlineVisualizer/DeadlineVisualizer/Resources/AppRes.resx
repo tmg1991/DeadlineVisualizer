@@ -126,6 +126,9 @@
   <data name="CurrentFile" xml:space="preserve">
     <value>Current file:</value>
   </data>
+  <data name="CurrentFileHasBeenModified" xml:space="preserve">
+    <value>Current file has been modified</value>
+  </data>
   <data name="DaysString" xml:space="preserve">
     <value>Days</value>
   </data>
@@ -159,8 +162,14 @@
   <data name="NewFileButtonText" xml:space="preserve">
     <value>New</value>
   </data>
+  <data name="No" xml:space="preserve">
+    <value>No</value>
+  </data>
   <data name="OpenFileButtonText" xml:space="preserve">
     <value>Open...</value>
+  </data>
+  <data name="ProceedWithoutSaving" xml:space="preserve">
+    <value>Would you like to proceed without saving it?</value>
   </data>
   <data name="SaveError" xml:space="preserve">
     <value>Couldn't save file</value>
@@ -197,5 +206,8 @@
   </data>
   <data name="WarningLevel3DistanceText" xml:space="preserve">
     <value>Warning Level 3 (red) days</value>
+  </data>
+  <data name="Yes" xml:space="preserve">
+    <value>Yes</value>
   </data>
 </root>

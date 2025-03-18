@@ -73,6 +73,10 @@ namespace DeadlineVisualizer
 
         private async void OpenButton_Clicked(object sender, EventArgs e)
         {
+            if(!(await AskToProceed()))
+            {
+                return;
+            }
             var dialogResult = await FilePicker.Default.PickAsync();
             if (dialogResult != null)
             {
@@ -88,8 +92,25 @@ namespace DeadlineVisualizer
             }
         }
 
-        private void NewButton_Clicked(object sender, EventArgs e)
+        private async Task<bool> AskToProceed()
         {
+            if (_viewModel.IsDirty)
+            {
+                var answer = await DisplayAlert(DeadlineVisualizer.Resources.AppRes.CurrentFileHasBeenModified,
+                    DeadlineVisualizer.Resources.AppRes.ProceedWithoutSaving,
+                    DeadlineVisualizer.Resources.AppRes.Yes,
+                    DeadlineVisualizer.Resources.AppRes.No);
+                return answer;
+            }
+            return true;
+        }
+
+        private async void NewButton_Clicked(object sender, EventArgs e)
+        {
+            if (!(await AskToProceed()))
+            {
+                return;
+            }
             _viewModel.Clear();
         }
     }
