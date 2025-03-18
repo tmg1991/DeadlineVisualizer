@@ -91,10 +91,11 @@ public partial class CalendarView : ContentView
             else
             {
                 date = date.AddDays(i);
-                headerText = $"{date.Year}{Environment.NewLine}{date.ToString("MMM dd")}";// date.ToString("yyyy MM dd").Replace(' ', '\n');
+                headerText = $"{date.Year}{Environment.NewLine}{date.ToString("MMM dd")}";
             }
             view.VisibleDatesOnUI.Add(date);
-            var label = new Label() { Text = headerText, LineBreakMode = LineBreakMode.WordWrap,  Scale = 0.8};
+            var background = date == DateTime.Today ? Colors.DeepSkyBlue : Colors.Transparent;
+            var label = new Label() { Text = headerText, LineBreakMode = LineBreakMode.WordWrap,  Scale = 0.8, BackgroundColor = background};
             view.calendarGrid.Add(label, i + 1, 0);
         }
     }
