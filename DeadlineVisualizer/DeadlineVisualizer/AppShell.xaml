@@ -20,9 +20,11 @@
         </Tab>
     </FlyoutItem>
 
-    <!--<ShellContent
-        Title="Home"
-        ContentTemplate="{DataTemplate local:MainPage}"
-        Route="MainPage" />-->
+    <Shell.FlyoutFooter>
+        <VerticalStackLayout Margin="5">
+            <Label Text="™.G" HorizontalOptions="End"/>
+            <Label Text="v1.0.0" HorizontalOptions="End"/>
+        </VerticalStackLayout>
+    </Shell.FlyoutFooter>
 
 </Shell>
