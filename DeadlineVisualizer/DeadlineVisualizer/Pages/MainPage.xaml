@@ -21,10 +21,10 @@
         </HorizontalStackLayout>
         
         <VerticalStackLayout Spacing="15" Grid.Row="1" Grid.Column="0">
-            <Button Text="{x:Static res:AppRes.NewFileButtonText}" Clicked="NewButton_Clicked"/>
-            <Button Text="{x:Static res:AppRes.OpenFileButtonText}" Clicked="OpenButton_Clicked"/>
-            <Button Text="{x:Static res:AppRes.SaveFileButtonText}" Clicked="SaveButton_Clicked"/>
-            <Button Text="{x:Static res:AppRes.SaveFileAsButtonText}" Clicked="SaveAsButton_Clicked"/>
+            <Button Text="{x:Static res:AppRes.NewFileButtonText}" LineBreakMode="WordWrap" Clicked="NewButton_Clicked"/>
+            <Button Text="{x:Static res:AppRes.OpenFileButtonText}" LineBreakMode="WordWrap" Clicked="OpenButton_Clicked"/>
+            <Button Text="{x:Static res:AppRes.SaveFileButtonText}" LineBreakMode="WordWrap" Clicked="SaveButton_Clicked"/>
+            <Button Text="{x:Static res:AppRes.SaveFileAsButtonText}" LineBreakMode="WordWrap" Clicked="SaveAsButton_Clicked"/>
             <Button Text="➕" Command="{Binding AddMilestoneCommand}" WidthRequest="50" HeightRequest="50" Margin="30" CornerRadius="200"/>
         </VerticalStackLayout>
         <local:CalendarView Grid.Row="1" Grid.Column="1" Milestones="{Binding Milestones}"/>
