@@ -23,7 +23,7 @@
     <Shell.FlyoutFooter>
         <VerticalStackLayout Margin="5">
             <Label Text="™.G" HorizontalOptions="End"/>
-            <Label Text="v1.0.0" HorizontalOptions="End"/>
+            <Label Text="v1.1.0" HorizontalOptions="End"/>
         </VerticalStackLayout>
     </Shell.FlyoutFooter>
 
