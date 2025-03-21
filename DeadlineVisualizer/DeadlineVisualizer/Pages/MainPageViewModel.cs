@@ -50,6 +50,7 @@ namespace DeadlineVisualizer
         {
             _milestoneBuffer = milestoneBuffer;
             _milestoneBuffer.MilestoneDeleteRequested += MilestoneBuffer_MilestoneDeleteRequested;
+            _milestoneBuffer.MilestoneMovementRequested += MilestoneBuffer_MilestoneMovementRequested;
             AddMilestoneCommand = new Command(AddMilestone);
             Milestones.CollectionChanged += Milestones_CollectionChanged;
         }
@@ -103,6 +104,21 @@ namespace DeadlineVisualizer
             {
                 var matching = Milestones.First(_ => _.ID == e.ID);
                 Milestones.Remove(matching);
+            }
+        }
+
+        private void MilestoneBuffer_MilestoneMovementRequested(object? sender, MilestoneMovement e)
+        {
+            if (Milestones.Any(_ => _.ID == e.Milestone.ID))
+            {
+                var matching = Milestones.First(_ => _.ID == e.Milestone.ID);
+                var currentIndex = Milestones.IndexOf(matching);
+                var indexToBe = currentIndex + e.Movement;
+                if(indexToBe < 0 || indexToBe > Milestones.Count - 1)
+                {
+                    return;
+                }
+                Milestones.Move(currentIndex, indexToBe);
             }
         }
 

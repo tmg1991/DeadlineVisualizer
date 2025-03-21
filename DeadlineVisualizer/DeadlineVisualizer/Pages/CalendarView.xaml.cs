@@ -114,7 +114,7 @@ public partial class CalendarView : ContentView
         calendarGrid.Children.Clear();
         for (int i = 0; i < MAX_COLUMNS + 1; i++)
         {
-            int width = i == 0 ? 2 : 1;
+            int width = i == 0 ? 4 : 1;
             calendarGrid.ColumnDefinitions.Add(new ColumnDefinition() { Width = new GridLength(width, GridUnitType.Star) });
         }
 

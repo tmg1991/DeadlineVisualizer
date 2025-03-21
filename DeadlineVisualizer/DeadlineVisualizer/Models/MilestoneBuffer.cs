@@ -3,10 +3,9 @@
     public class MilestoneBuffer
     {
         private readonly Queue<Milestone> _milestoneQueue = new();
-        private Milestone _milestoneToDelete;
-        public Milestone MilestoneToDelete => _milestoneToDelete;
-
+        
         public event EventHandler<Milestone> MilestoneDeleteRequested;
+        public event EventHandler<MilestoneMovement> MilestoneMovementRequested;
 
         public void Enqueue(Milestone milestone)
         {
@@ -22,8 +21,12 @@
 
         public void MarkMilestoneForDelete(Milestone milestone)
         {
-            _milestoneToDelete = milestone;
             MilestoneDeleteRequested?.Invoke(this, milestone);
+        }
+
+        public void RequestMilestoneMovement(MilestoneMovement movement)
+        {
+            MilestoneMovementRequested?.Invoke(this, movement);
         }
     }
 }
