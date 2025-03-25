@@ -123,6 +123,8 @@ public partial class CalendarView : ContentView
             var height = i == 0 ? new GridLength(1, GridUnitType.Auto) : new GridLength(1, GridUnitType.Star);
             calendarGrid.RowDefinitions.Add(new RowDefinition() { Height = height });
         }
+        
+       calendarGrid.RowDefinitions.Add(new RowDefinition() { Height = GridLength.Star });
     }
 
     private static void AddMilestonesToGrid(Grid calendarGrid, ObservableCollection<Milestone> milestones)
