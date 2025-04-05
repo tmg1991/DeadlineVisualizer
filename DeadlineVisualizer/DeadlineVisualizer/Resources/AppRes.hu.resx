@@ -207,6 +207,9 @@
   <data name="WarningLevel3DistanceText" xml:space="preserve">
     <value>Harmadik (piros) figyelmeztetési szint napokban</value>
   </data>
+  <data name="WouldYouLikeToReloadFile" xml:space="preserve">
+    <value>Szeretnéd újra betölteni?</value>
+  </data>
   <data name="Yes" xml:space="preserve">
     <value>Igen</value>
   </data>

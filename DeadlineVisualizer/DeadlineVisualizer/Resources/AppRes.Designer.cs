@@ -331,6 +331,15 @@ namespace DeadlineVisualizer.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Would you like to reload it?.
+        /// </summary>
+        internal static string WouldYouLikeToReloadFile {
+            get {
+                return ResourceManager.GetString("WouldYouLikeToReloadFile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Yes.
         /// </summary>
         internal static string Yes {

@@ -6,6 +6,9 @@ namespace DeadlineVisualizer
     {
         private readonly MainPageViewModel _viewModel;
         private readonly MilestoneBuffer _milestoneBuffer;
+        private FileSystemWatcher _fileSystemWatcher;
+        private DateTime _lastChangedTime = DateTime.MinValue;
+        private readonly TimeSpan _debounceTime = TimeSpan.FromSeconds(1);
         public MainPage(MainPageViewModel viewModel, MilestoneBuffer milestoneBuffer)
         {
             _viewModel = viewModel;
@@ -37,12 +40,14 @@ namespace DeadlineVisualizer
             {
                 try
                 {
+                    StopWatchingFile();
                     using (var jsonStream = _viewModel.GetSerializedMilestones())
                     using (var fileStream = new FileStream(_viewModel.CurrentFileFullPath, FileMode.Create, FileAccess.Write))
                     {
                         await jsonStream.CopyToAsync(fileStream);
                     };
                     _viewModel.IsDirty = false;
+                    StartWatchingFile();
                 }
                 catch (Exception ex)
                 {
@@ -58,8 +63,10 @@ namespace DeadlineVisualizer
             try
             {
                 fileSaverResult.EnsureSuccess();
+                StopWatchingFile();
                 _viewModel.CurrentFileFullPath = fileSaverResult.FilePath;
                 _viewModel.IsDirty = false;
+                StartWatchingFile();
             }
             catch (Exception ex)
             {
@@ -73,22 +80,29 @@ namespace DeadlineVisualizer
 
         private async void OpenButton_Clicked(object sender, EventArgs e)
         {
-            if(!(await AskToProceed()))
+            if(!await AskToProceed())
             {
                 return;
             }
             var dialogResult = await FilePicker.Default.PickAsync();
             if (dialogResult != null)
             {
-                try
-                {
-                    await _viewModel.LoadFromFileAsync(dialogResult.FullPath);
-                    _viewModel.CurrentFileFullPath = dialogResult.FullPath;
-                }
-                catch (Exception ex)
-                {
-                    await DisplayAlert(DeadlineVisualizer.Resources.AppRes.LoadError, ex.Message, "OK");
-                }
+                await LoadFile(dialogResult.FullPath);
+            }
+        }
+
+        private async Task LoadFile(string fullPath)
+        {
+            try
+            {
+                StopWatchingFile();
+                await _viewModel.LoadFromFileAsync(fullPath);
+                _viewModel.CurrentFileFullPath = fullPath;
+                StartWatchingFile();
+            }
+            catch (Exception ex)
+            {
+                await DisplayAlert(DeadlineVisualizer.Resources.AppRes.LoadError, ex.Message, "OK");
             }
         }
 
@@ -105,13 +119,67 @@ namespace DeadlineVisualizer
             return true;
         }
 
+        private async Task<bool> AskForReload()
+        {
+            var answer = await DisplayAlert(DeadlineVisualizer.Resources.AppRes.CurrentFileHasBeenModified,
+                    DeadlineVisualizer.Resources.AppRes.WouldYouLikeToReloadFile,
+                    DeadlineVisualizer.Resources.AppRes.Yes,
+                    DeadlineVisualizer.Resources.AppRes.No);
+            return answer;
+        }
+
         private async void NewButton_Clicked(object sender, EventArgs e)
         {
-            if (!(await AskToProceed()))
+            if (!await AskToProceed())
             {
                 return;
             }
+            StopWatchingFile();
             _viewModel.Clear();
+        }
+
+        private void StartWatchingFile()
+        {
+            var path = Path.GetDirectoryName(_viewModel.CurrentFileFullPath);
+            if (string.IsNullOrEmpty(path))
+            {
+                return;
+            }
+            _fileSystemWatcher = new FileSystemWatcher(path)
+            {
+                Filter = Path.GetFileName(_viewModel.CurrentFileFullPath),
+                NotifyFilter = NotifyFilters.LastWrite,
+                EnableRaisingEvents = true
+            };
+            _fileSystemWatcher.Changed += OnWatchedFileChanged;
+        }
+
+        private void StopWatchingFile()
+        {
+            if (_fileSystemWatcher == null)
+            {
+                return;
+            }
+            _fileSystemWatcher.Changed -= OnWatchedFileChanged;
+            _fileSystemWatcher.Dispose();
+        }
+
+        private void OnWatchedFileChanged(object sender, FileSystemEventArgs e)
+        {
+            var now = DateTime.Now;
+            if (now - _lastChangedTime < _debounceTime)
+            {
+                return;
+            }
+
+            _lastChangedTime = now;
+            MainThread.BeginInvokeOnMainThread(async () =>
+            {
+                if (await AskForReload())
+                {
+                    await LoadFile(_viewModel.CurrentFileFullPath);
+                }
+            });
         }
     }
 }

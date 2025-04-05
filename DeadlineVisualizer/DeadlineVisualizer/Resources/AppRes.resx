@@ -207,6 +207,9 @@
   <data name="WarningLevel3DistanceText" xml:space="preserve">
     <value>Warning Level 3 (red) days</value>
   </data>
+  <data name="WouldYouLikeToReloadFile" xml:space="preserve">
+    <value>Would you like to reload it?</value>
+  </data>
   <data name="Yes" xml:space="preserve">
     <value>Yes</value>
   </data>
