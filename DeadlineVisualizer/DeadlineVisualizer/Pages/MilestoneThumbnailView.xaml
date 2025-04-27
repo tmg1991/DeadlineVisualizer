@@ -17,7 +17,7 @@
             </Grid.RowDefinitions>
             <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="4" Text="{Binding Milestone.Title}" HorizontalOptions="Start" FontAttributes="Bold" FontSize="12" Margin="5"/>
             <Label Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="4" Text="{Binding Milestone.Deadline, StringFormat='{0:yyyy-MM-dd}'}" HorizontalOptions="Start" FontSize="10" Margin="5,0"/>
-            <Button Scale="0.4" BackgroundColor="AliceBlue" Grid.Row="2" Grid.Column="0" Text="✎" Command="{Binding EditCommand}" CommandParameter="{Binding .}" HorizontalOptions="Start"/>
+            <Button Scale="0.4" BackgroundColor="AliceBlue" Grid.Row="2" Grid.Column="0" Text="✎" TextColor="Black" Command="{Binding EditCommand}" CommandParameter="{Binding .}" HorizontalOptions="Start"/>
             <Button Scale="0.4" BackgroundColor="AliceBlue" Grid.Row="2" Grid.Column="1" Text="❌" Command="{Binding RemoveCommand}" CommandParameter="{Binding .}" HorizontalOptions="Start"/>
             <Button Scale="0.4" BackgroundColor="AliceBlue" Grid.Row="2" Grid.Column="2" Text="▲" TextColor="Black" Command="{Binding MoveUpCommand}" CommandParameter="{Binding .}" HorizontalOptions="Start"/>
             <Button Scale="0.4" BackgroundColor="AliceBlue" Grid.Row="2" Grid.Column="3" Text="▼" TextColor="Black" Command="{Binding MoveDownCommand}" CommandParameter="{Binding .}" HorizontalOptions="Start"/>
