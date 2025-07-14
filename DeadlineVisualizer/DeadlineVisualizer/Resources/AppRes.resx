@@ -120,6 +120,9 @@
   <data name="AddDeadline" xml:space="preserve">
     <value>Add deadline</value>
   </data>
+  <data name="AppIsAboutToClose" xml:space="preserve">
+    <value>App is about to close</value>
+  </data>
   <data name="CalendarWeeksString" xml:space="preserve">
     <value>Calendar weeks</value>
   </data>
@@ -170,6 +173,9 @@
   </data>
   <data name="ProceedWithoutSaving" xml:space="preserve">
     <value>Would you like to proceed without saving it?</value>
+  </data>
+  <data name="RemindToCheck" xml:space="preserve">
+    <value>Check if your modifications have been saved. Do you really want to close?</value>
   </data>
   <data name="SaveError" xml:space="preserve">
     <value>Couldn't save file</value>

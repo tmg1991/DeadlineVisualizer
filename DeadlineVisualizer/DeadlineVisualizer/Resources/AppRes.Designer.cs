@@ -70,6 +70,15 @@ namespace DeadlineVisualizer.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to App is about to close.
+        /// </summary>
+        internal static string AppIsAboutToClose {
+            get {
+                return ResourceManager.GetString("AppIsAboutToClose", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Calendar weeks.
         /// </summary>
         internal static string CalendarWeeksString {
@@ -219,6 +228,15 @@ namespace DeadlineVisualizer.Resources {
         internal static string ProceedWithoutSaving {
             get {
                 return ResourceManager.GetString("ProceedWithoutSaving", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Check if your modifications have been saved. Do you really want to close?.
+        /// </summary>
+        internal static string RemindToCheck {
+            get {
+                return ResourceManager.GetString("RemindToCheck", resourceCulture);
             }
         }
         

@@ -120,6 +120,9 @@
   <data name="AddDeadline" xml:space="preserve">
     <value>Határidő hozzáadása</value>
   </data>
+  <data name="AppIsAboutToClose" xml:space="preserve">
+    <value>Az alkalmazás le fog állni</value>
+  </data>
   <data name="CalendarWeeksString" xml:space="preserve">
     <value>Naptári hetek</value>
   </data>
@@ -170,6 +173,9 @@
   </data>
   <data name="ProceedWithoutSaving" xml:space="preserve">
     <value>Folytatod mentés nélkül?</value>
+  </data>
+  <data name="RemindToCheck" xml:space="preserve">
+    <value>Ellenőrizd, hogy elmentetted-e a változtatásaidat. Biztosan kilépsz?</value>
   </data>
   <data name="SaveError" xml:space="preserve">
     <value>Fájl mentése sikertelen</value>

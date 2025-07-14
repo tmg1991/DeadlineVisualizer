@@ -1,6 +1,14 @@
-﻿namespace DeadlineVisualizer
+﻿#if WINDOWS
+using Microsoft.UI.Windowing;
+using Microsoft.UI.Xaml;
+using WinRT.Interop;
+using Microsoft.Maui.Platform; // Needed for PlatformView
+#endif
+
+
+namespace DeadlineVisualizer
 {
-    public partial class App : Application
+    public partial class App : Microsoft.Maui.Controls.Application
     {
         public App()
         {
@@ -27,5 +35,55 @@
             }
 
         }
+
+        protected override Microsoft.Maui.Controls.Window CreateWindow(IActivationState activationState)
+        {
+            var mauiWindow = new Microsoft.Maui.Controls.Window(MainPage);
+
+#if WINDOWS
+        mauiWindow.HandlerChanged += (s, e) =>
+        {
+        if(mauiWindow.Handler == null)
+            {
+                return;
+            }
+            var nativeWindow = mauiWindow.Handler.PlatformView as Microsoft.UI.Xaml.Window;
+
+            var hwnd = WindowNative.GetWindowHandle(nativeWindow);
+            var windowId = Microsoft.UI.Win32Interop.GetWindowIdFromWindow(hwnd);
+            var appWindow = AppWindow.GetFromWindowId(windowId);
+
+            appWindow.Closing += async (s, e) =>
+            {
+                e.Cancel = true;
+                var result = await ShowCloseConfirmationAsync(mauiWindow.Page);
+
+                if (result)
+                {
+                    //appWindow.Destroy(); // Now we close for real
+                    nativeWindow.Close();
+                }
+            };
+        };
+#endif
+
+            return mauiWindow;
+        }
+
+
+#if WINDOWS
+    private async Task<bool> ShowCloseConfirmationAsync(Page page)
+    {
+        return await MainThread.InvokeOnMainThreadAsync(async () =>
+        {
+            return await page.DisplayAlert(
+                DeadlineVisualizer.Resources.AppRes.AppIsAboutToClose,
+                DeadlineVisualizer.Resources.AppRes.RemindToCheck,
+                DeadlineVisualizer.Resources.AppRes.Yes,
+                DeadlineVisualizer.Resources.AppRes.No
+            );
+        });
+    }
+#endif
     }
 }
