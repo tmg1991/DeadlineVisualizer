@@ -7,6 +7,7 @@ namespace DeadlineVisualizer
         private readonly MainPageViewModel _viewModel;
         private readonly MilestoneBuffer _milestoneBuffer;
         private FileSystemWatcher _fileSystemWatcher;
+        private bool _isReloadNeeded;
         private DateTime _lastChangedTime = DateTime.MinValue;
         private readonly TimeSpan _debounceTime = TimeSpan.FromSeconds(1);
         public MainPage(MainPageViewModel viewModel, MilestoneBuffer milestoneBuffer)
@@ -173,11 +174,22 @@ namespace DeadlineVisualizer
             }
 
             _lastChangedTime = now;
+            SafeAskForReload();
+        }
+
+        private void SafeAskForReload()
+        {
+            if (_isReloadNeeded == true)
+            {
+                return;
+            }
+            _isReloadNeeded = true;
             MainThread.BeginInvokeOnMainThread(async () =>
             {
                 if (await AskForReload())
                 {
                     await LoadFile(_viewModel.CurrentFileFullPath);
+                    _isReloadNeeded = false;
                 }
             });
         }
