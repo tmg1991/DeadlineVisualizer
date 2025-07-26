@@ -171,6 +171,9 @@
   <data name="OpenFileButtonText" xml:space="preserve">
     <value>Open...</value>
   </data>
+  <data name="OverdueTasks" xml:space="preserve">
+    <value>Overdue task</value>
+  </data>
   <data name="ProceedWithoutSaving" xml:space="preserve">
     <value>Would you like to proceed without saving it?</value>
   </data>

@@ -223,6 +223,15 @@ namespace DeadlineVisualizer.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Overdue task.
+        /// </summary>
+        internal static string OverdueTasks {
+            get {
+                return ResourceManager.GetString("OverdueTasks", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Would you like to proceed without saving it?.
         /// </summary>
         internal static string ProceedWithoutSaving {

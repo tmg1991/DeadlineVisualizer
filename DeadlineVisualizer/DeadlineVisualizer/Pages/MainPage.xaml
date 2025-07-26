@@ -18,6 +18,7 @@
             <Label WidthRequest="15"/>
             <Label Text="{Binding CurrentFileName}" HorizontalOptions="Start" FontAttributes="Italic"/>
             <Label Text="*" HorizontalOptions="Start" FontAttributes="Italic" IsVisible="{Binding IsDirty}"/>
+            <Label x:Name="overdueLabel" Text="{x:Static res:AppRes.OverdueTasks}" HorizontalOptions="End" Margin="500,0,0,0" FontAttributes="Bold" TextColor="Crimson" IsVisible="{Binding IsOverdue}"/>
         </HorizontalStackLayout>
         
         <VerticalStackLayout Spacing="15" Grid.Row="1" Grid.Column="0">
@@ -27,7 +28,7 @@
             <Button Text="{x:Static res:AppRes.SaveFileAsButtonText}" LineBreakMode="WordWrap" Clicked="SaveAsButton_Clicked"/>
             <Button Text="➕" Command="{Binding AddMilestoneCommand}" WidthRequest="50" HeightRequest="50" Margin="30" CornerRadius="200"/>
         </VerticalStackLayout>
-        <local:CalendarView Grid.Row="1" Grid.Column="1" Milestones="{Binding Milestones}"/>
+        <local:CalendarView x:Name="calendarView" Grid.Row="1" Grid.Column="1" Milestones="{Binding Milestones}"/>
     </Grid>
     
 

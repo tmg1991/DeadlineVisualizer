@@ -27,7 +27,7 @@ namespace DeadlineVisualizer
         public string CurrentFileFullPath
         {
             get { return _currentFileFullPath; }
-            set 
+            set
             {
                 _currentFileFullPath = value;
                 CurrentFileName = Path.GetFileName(value);
@@ -40,6 +40,13 @@ namespace DeadlineVisualizer
         {
             get { return _isDirty; }
             set { _isDirty = value; NotifyPropertyChanged(); }
+        }
+
+        private bool _isOverdue;
+        public bool IsOverdue
+        {
+            get { return _isOverdue; }
+            set { _isOverdue = value; NotifyPropertyChanged(); }
         }
 
         public ICommand AddMilestoneCommand { get; private set; }
@@ -91,6 +98,11 @@ namespace DeadlineVisualizer
             Milestones.Clear();
             CurrentFileFullPath = string.Empty;
             IsDirty = false;
+        }
+
+        public void CheckOverdue()
+        {
+            IsOverdue = Milestones.Any(_ => _.Deadline < DateTime.Today);
         }
 
         private void Milestones_CollectionChanged(object? sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)

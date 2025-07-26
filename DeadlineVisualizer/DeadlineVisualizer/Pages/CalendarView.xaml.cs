@@ -8,6 +8,7 @@ public partial class CalendarView : ContentView
 {
     private const int MAX_COLUMNS = 15;
     private List<CalendarUnitDescription> calendarUnitDescriptions = new();
+    public event EventHandler? Updated;
 
     public List<DateTime> VisibleDatesOnUI { get; set; } = new();
     public DateTime StartingDate
@@ -79,6 +80,7 @@ public partial class CalendarView : ContentView
         CreateHeader(view);
 
         AddColorizedMarks(view, milestones);
+        view.Updated?.Invoke(view, EventArgs.Empty);
     }
 
     private static void CreateHeader(CalendarView view)

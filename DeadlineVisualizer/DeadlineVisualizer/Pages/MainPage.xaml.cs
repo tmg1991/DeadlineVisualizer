@@ -17,7 +17,22 @@ namespace DeadlineVisualizer
             BindingContext = _viewModel;
             _viewModel.MilestoneChangeRequested += _viewModel_MilestoneChangeRequested;
             InitializeComponent();
-            
+            calendarView.Updated += CalendarView_Updated;
+            Task.Run(() => {StartBlinking(overdueLabel); }) ;
+        }
+
+        private async void StartBlinking(Label label)
+        {
+            while (true)
+            {
+                await label.FadeTo(0, 750);
+                await label.FadeTo(1, 750);
+            }
+        }
+
+        private void CalendarView_Updated(object? sender, EventArgs e)
+        {
+            _viewModel.CheckOverdue();
         }
 
         private async void _viewModel_MilestoneChangeRequested(object? sender, Milestone e)

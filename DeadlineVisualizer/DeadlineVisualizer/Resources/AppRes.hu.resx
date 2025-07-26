@@ -171,6 +171,9 @@
   <data name="OpenFileButtonText" xml:space="preserve">
     <value>Megnyitás</value>
   </data>
+  <data name="OverdueTasks" xml:space="preserve">
+    <value>Határidőn túli feladat</value>
+  </data>
   <data name="ProceedWithoutSaving" xml:space="preserve">
     <value>Folytatod mentés nélkül?</value>
   </data>
