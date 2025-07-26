@@ -18,9 +18,16 @@
             </HorizontalStackLayout>
             
             <!-- this is calendar grid-->
-            <ScrollView Grid.Row="1" >
-                <Grid x:Name="calendarGrid"/>
-            </ScrollView>
+            <Grid Grid.Row="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="9*"/>
+                </Grid.RowDefinitions>
+                <Grid Grid.Row="0" x:Name="headerGrid"/>
+                <ScrollView Grid.Row="1">
+                    <Grid x:Name="calendarGrid"/>
+                </ScrollView>
+            </Grid>
         </Grid>
     </Border>
 </ContentView>

@@ -75,7 +75,7 @@ public partial class CalendarView : ContentView
             return;
         }
 
-        PrepareGrid(view.calendarGrid, milestones.Count);
+        PrepareGrid(view.headerGrid, view.calendarGrid, milestones.Count);
 
         AddMilestonesToGrid(view.calendarGrid, milestones);
 
@@ -107,28 +107,35 @@ public partial class CalendarView : ContentView
             view.VisibleDatesOnUI.Add(date);
             var background = date == DateTime.Today ? Colors.DeepSkyBlue : Colors.Transparent;
             var label = new Label() { Text = headerText, LineBreakMode = LineBreakMode.WordWrap,  Scale = 0.8, BackgroundColor = background};
-            view.calendarGrid.Add(label, i + 1, 0);
+            view.headerGrid.Add(label, i + 1, 0);
         }
     }
 
-    private static void PrepareGrid(Grid calendarGrid, int milestonesCount)
+    private static void PrepareGrid(Grid headerGrid, Grid calendarGrid, int milestonesCount)
     {
-        calendarGrid.RowDefinitions.Clear();
-        calendarGrid.ColumnDefinitions.Clear();
-        calendarGrid.Children.Clear();
-        for (int i = 0; i < MAX_COLUMNS + 1; i++)
-        {
-            int width = i == 0 ? 4 : 1;
-            calendarGrid.ColumnDefinitions.Add(new ColumnDefinition() { Width = new GridLength(width, GridUnitType.Star) });
-        }
+        headerGrid.ClearGrid();
+        AddColumnDefinitions(headerGrid);
 
-        for (int i = 0; i < milestonesCount + 1; i++)
+        headerGrid.RowDefinitions.Add(new RowDefinition() { Height = new GridLength(1, GridUnitType.Auto) });
+
+        calendarGrid.ClearGrid();
+        AddColumnDefinitions(calendarGrid);
+
+        for (int i = 0; i < milestonesCount; i++)
         {
-            var height = i == 0 ? new GridLength(1, GridUnitType.Auto) : new GridLength(1, GridUnitType.Star);
-            calendarGrid.RowDefinitions.Add(new RowDefinition() { Height = height });
+            calendarGrid.RowDefinitions.Add(new RowDefinition() { Height = new GridLength(1, GridUnitType.Star) });
         }
         
        calendarGrid.RowDefinitions.Add(new RowDefinition() { Height = GridLength.Star });
+    }
+
+    private static void AddColumnDefinitions(Grid grid)
+    {
+        for (int i = 0; i < MAX_COLUMNS + 1; i++)
+        {
+            int width = i == 0 ? 4 : 1;
+            grid.ColumnDefinitions.Add(new ColumnDefinition() { Width = new GridLength(width, GridUnitType.Star) });
+        }
     }
 
     private static void AddMilestonesToGrid(Grid calendarGrid, ObservableCollection<Milestone> milestones)
@@ -136,7 +143,7 @@ public partial class CalendarView : ContentView
         for (int i = 0; i < milestones.Count(); i++)
         {
             var thumbnail = new MilestoneThumbnailView(milestones[i]);
-            calendarGrid.Add(thumbnail, 0, i+1);
+            calendarGrid.Add(thumbnail, 0, i);
         }
     }
 
@@ -164,7 +171,7 @@ public partial class CalendarView : ContentView
                     HeightRequest = 10,
                     StrokeShape = new Rectangle(),
                 };
-                view.calendarGrid.Add(box, col+1, row+1);
+                view.calendarGrid.Add(box, col+1, row);
             }
         }
     }
