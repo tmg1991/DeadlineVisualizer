@@ -160,13 +160,9 @@ public partial class CalendarView : ContentView
                     Stroke = color,
                     BackgroundColor = color,
                     StrokeThickness = 4,
-                    HorizontalOptions = LayoutOptions.Center,
+                    HorizontalOptions = LayoutOptions.Fill,
                     HeightRequest = 10,
-                    WidthRequest = 35,
-                    StrokeShape = new RoundRectangle
-                    {
-                        CornerRadius = new CornerRadius(10, 10, 10, 10)
-                    },
+                    StrokeShape = new Rectangle(),
                 };
                 view.calendarGrid.Add(box, col+1, row+1);
             }
