@@ -31,6 +31,9 @@
             
             <Label Grid.Row="4" Grid.Column="0" Text="{x:Static res:AppRes.DefaultCalendarUnit }" VerticalOptions="Center" HorizontalOptions="Start"/>
             <Picker Grid.Row="4" Grid.Column="1" ItemsSource="{Binding CalendarUnitDescriptions}" SelectedItem="{Binding SelectedCalendarUnitDescription}" ItemDisplayBinding="{Binding Name}" HorizontalOptions="End" WidthRequest="200"/>
+
+            <Label Grid.Row="5" Grid.Column="0" Text="{x:Static res:AppRes.AutoUpdateCalendar}" VerticalOptions="Center" HorizontalOptions="Start"/>
+            <CheckBox Grid.Row="5" Grid.Column="1" IsChecked="{Binding AutoUpdateCalendar}" HorizontalOptions="End"/>
         </Grid>
     </VerticalStackLayout>
 </ContentPage>

@@ -123,6 +123,9 @@
   <data name="AppIsAboutToClose" xml:space="preserve">
     <value>Az alkalmazás le fog állni</value>
   </data>
+  <data name="AutoUpdateCalendar" xml:space="preserve">
+    <value>Naptár automatikus frissítése</value>
+  </data>
   <data name="CalendarWeeksString" xml:space="preserve">
     <value>Naptári hetek</value>
   </data>

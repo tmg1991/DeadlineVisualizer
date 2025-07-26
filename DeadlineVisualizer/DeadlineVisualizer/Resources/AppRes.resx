@@ -123,6 +123,9 @@
   <data name="AppIsAboutToClose" xml:space="preserve">
     <value>App is about to close</value>
   </data>
+  <data name="AutoUpdateCalendar" xml:space="preserve">
+    <value>Update calendar automatically</value>
+  </data>
   <data name="CalendarWeeksString" xml:space="preserve">
     <value>Calendar weeks</value>
   </data>

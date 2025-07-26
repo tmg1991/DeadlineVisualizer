@@ -8,6 +8,8 @@ public partial class CalendarView : ContentView
 {
     private const int MAX_COLUMNS = 15;
     private List<CalendarUnitDescription> calendarUnitDescriptions = new();
+    private Task autoUpdateTask;
+    private CancellationTokenSource cts;
     public event EventHandler? Updated;
 
     public List<DateTime> VisibleDatesOnUI { get; set; } = new();
@@ -194,6 +196,7 @@ public partial class CalendarView : ContentView
         InitializeComponent();
         FillPicker();
         Init();
+        this.Loaded += CalendarView_Loaded;
     }
 
     private void FillPicker()
@@ -233,5 +236,49 @@ public partial class CalendarView : ContentView
     private void timeResolutionPicker_SelectedIndexChanged(object sender, EventArgs e)
     {
         SelectedCalendarUnitDescription = calendarUnitDescriptions[timeResolutionPicker.SelectedIndex];
+    }
+
+    private void CalendarView_Loaded(object? sender, EventArgs e)
+    {
+        if(Preferences.Default.Get(Constants.auto_update_calendar, true))
+        {
+            if(autoUpdateTask != null && !autoUpdateTask.IsCompleted)
+            {
+                return;
+            }
+            cts?.Dispose();
+            cts = new CancellationTokenSource();
+            autoUpdateTask = RunPeriodicTask(cts.Token);
+        }
+        else
+        {
+            cts?.Cancel();
+        }
+    }
+
+    private async Task RunPeriodicTask(CancellationToken cancellationToken)
+    {
+        var timer = new PeriodicTimer(TimeSpan.FromMinutes(1));
+
+        try
+        {
+            while (await timer.WaitForNextTickAsync(cancellationToken))
+            {
+                await UpdateCalendar();
+            }
+        }
+        catch (OperationCanceledException)
+        {
+            // Handle cancellation
+        }
+    }
+
+    private Task UpdateCalendar()
+    {
+        if(StartingDate != DateTime.Today)
+        {
+            StartingDate = DateTime.Today;
+        }
+        return Task.CompletedTask;
     }
 }

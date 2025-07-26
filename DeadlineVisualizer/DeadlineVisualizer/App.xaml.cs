@@ -27,7 +27,13 @@ namespace DeadlineVisualizer
                 Preferences.Default.Set(Constants.default_calendar_unit, CalendarUnits.CalendarWeeks.ToString());
             }
 
-            void SetDefaultDistance(string key, int days){
+            if (!Preferences.Default.ContainsKey(Constants.auto_update_calendar))
+            {
+                Preferences.Default.Set(Constants.auto_update_calendar, true);
+            }
+
+            void SetDefaultDistance(string key, int days)
+            {
                 if (!Preferences.Default.ContainsKey(key))
                 {
                     Preferences.Default.Set(key, days);

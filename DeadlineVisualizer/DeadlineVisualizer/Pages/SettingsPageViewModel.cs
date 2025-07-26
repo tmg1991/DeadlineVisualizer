@@ -40,6 +40,18 @@ namespace DeadlineVisualizer
             }
         }
 
+        private bool _autoUpdateCalendar;
+        public bool AutoUpdateCalendar
+        {
+            get { return _autoUpdateCalendar; }
+            set
+            {
+                _autoUpdateCalendar = value;
+                ShouldShowSaveSuccess = false;
+                NotifyPropertyChanged();
+            }
+        }
+
         private bool _shouldShowError;
         public bool ShouldShowError
         {
@@ -102,6 +114,7 @@ namespace DeadlineVisualizer
 
             var unitFromSettings = Preferences.Default.Get(Constants.default_calendar_unit, CalendarUnits.CalendarWeeks.ToString());
             SelectedCalendarUnitDescription = CalendarUnitDescriptions.First(_ => _.Unit.ToString() == unitFromSettings);
+            AutoUpdateCalendar = Preferences.Default.Get(Constants.auto_update_calendar, true);
         }
         private void Save()
         {
@@ -114,6 +127,7 @@ namespace DeadlineVisualizer
                 Preferences.Default.Set(Constants.warning_level_3_distance_key, WarningLevel3Distance);
 
                 Preferences.Default.Set(Constants.default_calendar_unit, SelectedCalendarUnitDescription.Unit.ToString());
+                Preferences.Default.Set(Constants.auto_update_calendar, AutoUpdateCalendar);
                 ShouldShowSaveSuccess = true;
                 return;
             }

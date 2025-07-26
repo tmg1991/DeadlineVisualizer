@@ -79,6 +79,15 @@ namespace DeadlineVisualizer.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Update calendar automatically.
+        /// </summary>
+        internal static string AutoUpdateCalendar {
+            get {
+                return ResourceManager.GetString("AutoUpdateCalendar", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Calendar weeks.
         /// </summary>
         internal static string CalendarWeeksString {
