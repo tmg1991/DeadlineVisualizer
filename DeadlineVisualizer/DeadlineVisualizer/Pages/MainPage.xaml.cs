@@ -16,6 +16,7 @@ namespace DeadlineVisualizer
             _milestoneBuffer = milestoneBuffer;
             BindingContext = _viewModel;
             _viewModel.MilestoneChangeRequested += _viewModel_MilestoneChangeRequested;
+            _viewModel.CurrentFileChanged += _viewModel_CurrentFileChanged;
             InitializeComponent();
             calendarView.Updated += CalendarView_Updated;
             Task.Run(() => {StartBlinking(overdueLabel); }) ;
@@ -152,6 +153,14 @@ namespace DeadlineVisualizer
             }
             StopWatchingFile();
             _viewModel.Clear();
+        }
+
+        private void _viewModel_CurrentFileChanged(object? sender, string e)
+        {
+            if (Application.Current.Windows[0].Handler.PlatformView is Microsoft.UI.Xaml.Window window)
+            {
+                window.Title = string.IsNullOrWhiteSpace(e) ? "Deadline Visualizer" : Path.GetFileNameWithoutExtension(e);
+            }
         }
 
         private void StartWatchingFile()

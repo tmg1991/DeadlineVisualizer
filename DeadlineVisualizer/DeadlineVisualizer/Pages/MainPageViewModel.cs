@@ -20,7 +20,12 @@ namespace DeadlineVisualizer
         public string CurrentFileName
         {
             get { return _currentFileName; }
-            private set { _currentFileName = value; NotifyPropertyChanged(); }
+            private set
+            {
+                _currentFileName = value;
+                CurrentFileChanged?.Invoke(this, _currentFileName);
+                NotifyPropertyChanged();
+            }
         }
 
         private string _currentFileFullPath;
@@ -52,6 +57,7 @@ namespace DeadlineVisualizer
         public ICommand AddMilestoneCommand { get; private set; }
 
         public event EventHandler<Milestone> MilestoneChangeRequested;
+        public event EventHandler<string> CurrentFileChanged;
 
         public MainPageViewModel(MilestoneBuffer milestoneBuffer)
         {
